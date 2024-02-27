@@ -1,3 +1,4 @@
+import ColorSwitch from "@components/color-switch";
 import Menu from "@components/menu";
 import useAuth from "@hook/store/use-auth";
 import {
@@ -18,7 +19,6 @@ import AppRoute from "@routes/route.constant";
 import { getInitialsName } from "@utils/functions/get-initials-name";
 import { BsLayoutSidebarInset } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa";
-import { MdDesignServices } from "react-icons/md";
 import { PiProjectorScreenChartLight } from "react-icons/pi";
 
 interface AppBarProps {
@@ -52,7 +52,6 @@ const AppBar = (props: AppBarProps) => {
             hiddenFrom="sm"
             size="sm"
             aria-label="Toggle navigation"
-            color="black"
           >
             <BsLayoutSidebarInset />
           </ActionIcon>
@@ -60,7 +59,6 @@ const AppBar = (props: AppBarProps) => {
             variant="transparent"
             size="sm"
             onClick={toggleDesktop}
-            color="black"
             visibleFrom="sm"
           >
             <BsLayoutSidebarInset />
@@ -79,15 +77,7 @@ const AppBar = (props: AppBarProps) => {
               menu={[
                 {
                   leftSection: <PiProjectorScreenChartLight size={20} />,
-                  children: <Text className="capitalize">Create Project</Text>,
-                  component: "a",
-                  href: AppRoute.create_project,
-                },
-                {
-                  leftSection: <MdDesignServices size={20} />,
-                  children: <Text className="capitalize">Book Service</Text>,
-                  component: "a",
-                  href: AppRoute.book_services,
+                  children: <Text className="capitalize">Add System</Text>,
                 },
               ]}
             />
@@ -132,6 +122,7 @@ const AppBar = (props: AppBarProps) => {
             </MMenu>
           </Group>
         )}
+        <ColorSwitch />
       </Flex>
     </AppShell.Header>
   );

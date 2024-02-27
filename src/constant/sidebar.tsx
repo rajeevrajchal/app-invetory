@@ -1,6 +1,7 @@
 import AppRoute from "@routes/route.constant";
 import { ReactElement } from "react";
 import { AiOutlinePieChart } from "react-icons/ai";
+import { GrSystem } from "react-icons/gr";
 
 export interface SidebarItem {
   icon: ReactElement;
@@ -16,6 +17,13 @@ export const sidebarMenu: SidebarItem[] = [
     label: "Home",
     key: "home",
     href: AppRoute.home,
+    allow: "*",
+  },
+  {
+    icon: <GrSystem size={22} />,
+    label: "Systems",
+    key: "system",
+    href: AppRoute.system,
     allow: "*",
   },
 ];
