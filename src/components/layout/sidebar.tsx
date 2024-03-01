@@ -60,7 +60,7 @@ const Sidebar = (props: SidebarProps) => {
             )}
           </Flex>
         </Box>
-        <Stack px="md">
+        <Stack px="md" mt="md">
           {getSideMenuViaRole.map((item: SidebarItem, index: number) => (
             <div key={`${item.key}-${index}`}>
               <NavLink

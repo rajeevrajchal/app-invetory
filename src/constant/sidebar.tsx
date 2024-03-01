@@ -1,7 +1,12 @@
 import AppRoute from "@routes/route.constant";
 import { ReactElement } from "react";
 import { AiOutlinePieChart } from "react-icons/ai";
-import { GrSystem } from "react-icons/gr";
+import { FaUsers } from "react-icons/fa";
+import { FaUsersRectangle } from "react-icons/fa6";
+import { GiSolarSystem } from "react-icons/gi";
+import { GrSchedule } from "react-icons/gr";
+import { LiaFileContractSolid } from "react-icons/lia";
+import { TiVendorMicrosoft } from "react-icons/ti";
 
 export interface SidebarItem {
   icon: ReactElement;
@@ -20,10 +25,45 @@ export const sidebarMenu: SidebarItem[] = [
     allow: "*",
   },
   {
-    icon: <GrSystem size={22} />,
+    icon: <GiSolarSystem size={22} />,
     label: "Systems",
     key: "system",
     href: AppRoute.system,
+    allow: "*",
+  },
+  {
+    icon: <FaUsers size={22} />,
+    label: "Clients",
+    key: "clients",
+    href: AppRoute.clients,
+    allow: "*",
+  },
+  {
+    icon: <LiaFileContractSolid size={24} />,
+    label: "Contracts",
+    key: "contracts",
+    href: AppRoute.contracts,
+    allow: "*",
+  },
+  {
+    icon: <GrSchedule size={22} />,
+    label: "Jobs",
+    key: "schedule",
+    href: AppRoute.schedule,
+    allow: "*",
+  },
+  {
+    icon: <FaUsersRectangle size={22} />,
+    label: "Users",
+    key: "users",
+    href: AppRoute.users,
+    allow: "*",
+  },
+  {
+    icon: <TiVendorMicrosoft size={22} />,
+    label: "Vendors",
+    key: "vendors",
+    href: AppRoute.vendors,
     allow: "*",
   },
 ];

@@ -1,3 +1,4 @@
+import NotFound from "@components/errors/not-found";
 import DashboardLayout from "@layout/dashboard.layout";
 import Home from "@module/home";
 import System from "@module/system";
@@ -10,6 +11,7 @@ const AppRoutes = () => {
       <Route path={AppRoute.home} element={<DashboardLayout />}>
         <Route index element={<Home />} />
         <Route path="system" element={<System />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
