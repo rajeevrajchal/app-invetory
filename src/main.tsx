@@ -1,12 +1,15 @@
 import { MantineProvider } from "@mantine/core";
-import "@mantine/core/styles.css";
 import i18n from "@plugins/i18n";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { I18nextProvider } from "react-i18next";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import "./index.css";
+
+import "@mantine/core/styles.css";
+import "mantine-datatable/styles.layer.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import React from "react";
 import ReactDOM from "react-dom/client";

@@ -1,4 +1,3 @@
-import logo from "@assets/react.svg";
 import { SidebarItem, sidebarMenu } from "@constant/sidebar";
 import useAuth from "@hook/store/use-auth";
 import {
@@ -51,11 +50,11 @@ const Sidebar = (props: SidebarProps) => {
             />
             {desktopOpened ? (
               <Center w="100%" h={48}>
-                <Image src={logo} h="100%" w="100%" alt="Eco Spark" />
+                <Image src="/vite.svg" h="100%" w="100%" alt="Domainsync" />
               </Center>
             ) : (
               <Center w="100%" h={48}>
-                <Image src={logo} h="100%" alt="Eco Spark" />
+                <Image src="/vite.svg" h="100%" alt="Domainsync" />
               </Center>
             )}
           </Flex>

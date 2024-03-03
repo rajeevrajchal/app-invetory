@@ -5,3 +5,10 @@
 @tailwind utilities;
 
 @layer mantine, mantine-datatable;
+
+.mantine-Radio-inner {
+  margin-left: 8px;
+}
+.mantine-Checkbox-label {
+  margin-right: 8px !important;
+}

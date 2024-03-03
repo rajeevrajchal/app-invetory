@@ -5,6 +5,7 @@ const AppRoute = {
   reset_password: "/reset-password",
   profile: "/my-account",
   system: "/system",
+  create_system: "/system/create",
   users: "/users",
   contracts: "/contracts",
   vendors: "/vendors",
