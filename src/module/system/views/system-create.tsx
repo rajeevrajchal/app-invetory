@@ -1,5 +1,7 @@
+import CreateSystemFrom from "../components/create-system-form";
+
 const SystemCreate = () => {
-  return <div>SystemCreate</div>;
+  return <CreateSystemFrom />;
 };
 
 export default SystemCreate;
