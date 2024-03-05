@@ -1,10 +1,10 @@
 import { Button, Group } from "@mantine/core";
 import { FileWithPath } from "@mantine/dropzone";
+import { useFormik } from "formik";
 import { useState } from "react";
 import { TbFileTypeCsv } from "react-icons/tb";
-import Modal from "./modal/modal";
-import { useFormik } from "formik";
 import Dropzone from "./dropzone";
+import Modal from "./modal/modal";
 
 interface UploadCSVProps {
   loading?: boolean;

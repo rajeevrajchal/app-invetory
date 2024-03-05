@@ -1,4 +1,4 @@
-import AppRoute from "@routes/route.constant";
+import AppRoute from "@/routes/route.constant";
 import { ReactElement } from "react";
 import { AiOutlinePieChart } from "react-icons/ai";
 import { FaUsers } from "react-icons/fa";

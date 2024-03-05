@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 export function buildQueryString(
   params: Record<string, string | undefined>
 ): string {

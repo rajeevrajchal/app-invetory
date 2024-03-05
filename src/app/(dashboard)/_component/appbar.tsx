@@ -1,6 +1,6 @@
-import ColorSwitch from "@components/color-switch";
-import Menu from "@components/menu";
-import useAuth from "@hook/store/use-auth";
+import useAuth from "@/hook/store/use-auth";
+import AppRoute from "@/routes/route.constant";
+import { getInitialsName } from "@/utils/functions/get-initials-name";
 import {
   ActionIcon,
   AppShell,
@@ -15,11 +15,11 @@ import {
   Paper,
   Text,
 } from "@mantine/core";
-import AppRoute from "@routes/route.constant";
-import { getInitialsName } from "@utils/functions/get-initials-name";
 import { BsLayoutSidebarInset } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa";
 import { PiProjectorScreenChartLight } from "react-icons/pi";
+import ColorSwitch from "../../../components/color-switch";
+import Menu from "../../../components/menu";
 
 interface AppBarProps {
   desktopOpened?: boolean;

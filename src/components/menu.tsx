@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Menu as MMenu } from "@mantine/core";
 import { filter, omit } from "lodash";
 import React, { ReactNode, useState } from "react";

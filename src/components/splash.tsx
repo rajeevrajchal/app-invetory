@@ -1,5 +1,5 @@
 const Splash = () => {
-  return <div>Splash</div>;
+  return <div>Loading....</div>;
 };
 
 export default Splash;

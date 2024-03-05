@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import useLocalStorage from "@hook/utils/use-localstorage";
+import { user_token_key } from "@/constant/ls-key";
+import useLocalStorage from "@/hook/utils/use-localstorage";
 import axios, {
   AxiosError,
   AxiosRequestConfig,
   Method,
   ResponseType,
 } from "axios";
-import { user_token_key } from "@constant/ls-key";
 
 interface AxiosAPI {
   url: string;
@@ -33,7 +32,7 @@ export enum METHOD {
   DELETE = "DELETE",
 }
 
-const baseUrl = `${import.meta.env.VITE_API_URL}/api/v1/`;
+const baseUrl = `${process.env.NEXT_APP_API_URL}/api/v1/`;
 
 const useAxios = async <T>(props: AxiosAPI): Promise<T> => {
   const { getStorageData } = useLocalStorage();

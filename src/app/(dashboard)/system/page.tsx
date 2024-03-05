@@ -1,7 +1,9 @@
-import Table from "@components/table";
-import { formatDate } from "@utils/functions/format-date";
+"use client";
+
+import Table from "@/components/table";
+import { formatDate } from "@/utils/functions/format-date";
 import { DataTableColumn } from "mantine-datatable";
-import SystemFilter from "../components/system-filter";
+import SystemFilter from "./_components/system-filter";
 
 const column: DataTableColumn[] = [
   {
@@ -27,15 +29,9 @@ const column: DataTableColumn[] = [
     render: (record: any) => formatDate(record.createdAt),
   },
 ];
+
 const SystemList = () => {
-  return (
-    <Table
-      label="Systems"
-      headerContent={<SystemFilter />}
-      columns={column}
-      data={[]}
-    />
-  );
+  return <Table headerContent={<SystemFilter />} columns={column} data={[]} />;
 };
 
 export default SystemList;

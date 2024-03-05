@@ -1,9 +1,11 @@
 import { Box, Center, Flex, Image, Stack } from "@mantine/core";
-import { Outlet } from "react-router-dom";
 
 import logo from "@assets/react.svg";
+import { PropsWithChildren } from "react";
 
-const AuthLayout = () => {
+const AuthTemplate = (props: PropsWithChildren) => {
+  const { children } = props;
+
   return (
     <Box
       style={{
@@ -22,9 +24,8 @@ const AuthLayout = () => {
           >
             <Stack gap="xl">
               <Box w={140}>
-                <Image src={logo} />
+                <Image src={logo} alt="Logo" />
               </Box>
-              {/* TODO: Add Content */}
               <div>the content</div>
             </Stack>
           </Center>
@@ -40,10 +41,10 @@ const AuthLayout = () => {
               >
                 <Center>
                   <Box display={{ base: "block", sm: "none" }} w="60%">
-                    <Image src={logo} />
+                    <Image src={logo} alt="Logo" />
                   </Box>
                 </Center>
-                <Outlet />
+                {children}
               </Stack>
             </Center>
           </Stack>
@@ -53,4 +54,4 @@ const AuthLayout = () => {
   );
 };
 
-export default AuthLayout;
+export default AuthTemplate;

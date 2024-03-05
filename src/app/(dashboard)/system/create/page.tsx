@@ -1,4 +1,4 @@
-import CreateSystemFrom from "../components/create-system-form";
+import CreateSystemFrom from "../_components/create-system-form";
 
 const SystemCreate = () => {
   return <CreateSystemFrom />;

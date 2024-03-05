@@ -1,7 +1,7 @@
 import { Tabs } from "@mantine/core";
 import { filter } from "lodash";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLayoutEffect } from "react";
-import { useSearchParams } from "react-router-dom";
 
 export type TabItem = {
   label: string;
@@ -19,16 +19,16 @@ interface TabProps {
 const Tab = (props: TabProps) => {
   const { tabs, initial } = props;
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   const activeTab = searchParams.get("tab") || tabs[0]?.value;
 
   const changeTab = (value?: string | null) => {
-    if (value) {
-      setSearchParams({
-        tab: value === null ? "system" : value,
-      });
+    if (value && value !== null) {
+      router.push(`${pathname}?tab=${value}`, undefined);
     } else {
-      setSearchParams();
+      router.push(pathname, undefined);
     }
   };
 

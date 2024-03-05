@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Fuse from "fuse.js";
 import { useState } from "react";
 import { useDebounce } from "./use-debounce";

@@ -1,4 +1,4 @@
-const currencySymbol = import.meta.env.VITE_APP_CURRENCY_SYMBOL || "USD";
+const currencySymbol = process.env.NEXT_APP_CURRENCY_SYMBOL || "USD";
 
 export const formatCurrency = (amount: number) => {
   const formatter = new Intl.NumberFormat(undefined, {

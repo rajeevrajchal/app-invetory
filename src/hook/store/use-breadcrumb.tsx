@@ -1,5 +1,7 @@
-import { createContext, ReactElement, useContext } from "react";
-import { useLocation } from "react-router-dom";
+"use client";
+
+import { usePathname } from "next/navigation";
+import { createContext, ReactElement, ReactNode, useContext } from "react";
 
 type Breadcrumb = {
   path: string;
@@ -18,9 +20,9 @@ const breadCrumbContext = createContext<BreadcrumbContextType>({
 const { Provider } = breadCrumbContext;
 
 const useBreadcrumbData = () => {
-  const location = useLocation();
+  const pathname = usePathname();
 
-  const paths = location.pathname.split("/").filter((p: string) => p);
+  const paths = pathname.split("/").filter((p: string) => p);
   const breadcrumbs: Breadcrumb[] = [];
 
   paths.reduce((prevPath: string, currPath: string) => {
@@ -31,7 +33,7 @@ const useBreadcrumbData = () => {
     breadcrumbs.push({
       path: breadcrumbPath,
       name: path === "" ? "Home" : !isNaN(Number(path)) ? path : path,
-      isActive: breadcrumbPath === location.pathname,
+      isActive: breadcrumbPath === pathname,
     });
 
     return breadcrumbPath;
@@ -42,7 +44,7 @@ const useBreadcrumbData = () => {
       {
         path: "/",
         name: "home",
-        isActive: location.pathname === "/",
+        isActive: pathname === "/",
       },
       ...breadcrumbs,
     ],
@@ -52,7 +54,7 @@ const useBreadcrumbData = () => {
 export const BreadcrumbProvider = ({
   children,
 }: {
-  children: ReactElement;
+  children: ReactElement | ReactNode;
 }) => {
   const data = useBreadcrumbData();
   return <Provider value={data}>{children}</Provider>;
@@ -60,5 +62,4 @@ export const BreadcrumbProvider = ({
 
 const useBreadcrumb = () => useContext(breadCrumbContext);
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default useBreadcrumb;

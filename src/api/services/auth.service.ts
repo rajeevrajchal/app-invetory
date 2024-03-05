@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+import useAxios, { METHOD } from "@/plugins/call.axios";
 import {
   FORGET_PASSWORD,
   LOGIN_TYPE,
   RESET_PASSWORD,
-} from "@api/types/auth.type";
-import useAxios, { METHOD } from "@plugins/call.axios";
+} from "../types/auth.type";
 
 const AuthService = {
   login: (payload: LOGIN_TYPE) =>

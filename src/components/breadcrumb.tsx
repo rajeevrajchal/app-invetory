@@ -1,4 +1,4 @@
-import useBreadcrumb from "@hook/store/use-breadcrumb";
+import useBreadcrumb from "@/hook/store/use-breadcrumb";
 import { Anchor, Breadcrumbs } from "@mantine/core";
 import { BiHomeAlt } from "react-icons/bi";
 

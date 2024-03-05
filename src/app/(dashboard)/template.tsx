@@ -1,19 +1,22 @@
-import Breadcrumb from "@components/breadcrumb";
-import AppBar from "@components/layout/appbar";
-import Sidebar from "@components/layout/sidebar";
+"use client";
+
+import AppBar from "@/app/(dashboard)/_component/appbar";
+import Sidebar from "@/app/(dashboard)/_component/sidebar";
+import Breadcrumb from "@/components/breadcrumb";
 import { AppShell, Stack } from "@mantine/core";
 import { useDisclosure, useLocalStorage } from "@mantine/hooks";
-import { useLayoutEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
+import { PropsWithChildren, useLayoutEffect, useState } from "react";
 
-const DashboardLayout = () => {
+const DashboardLayout = (props: PropsWithChildren) => {
+  const { children } = props;
   const [appSidebar, setAppSidebar] = useLocalStorage<boolean>({
     key: "app-sidebar",
     defaultValue: false,
   });
   const [desktopOpened, toggleDesktop] = useState<boolean>(false);
   const [mobileOpened, { toggle: toggleMobileOpened }] = useDisclosure(false);
-  const { pathname } = useLocation();
+  const pathname = usePathname();
 
   useLayoutEffect(() => {
     toggleDesktop(appSidebar as boolean);
@@ -46,7 +49,7 @@ const DashboardLayout = () => {
       <AppShell.Main>
         <Stack gap="md">
           {pathname != "/" && <Breadcrumb />}
-          <Outlet />
+          {children}
         </Stack>
       </AppShell.Main>
     </AppShell>

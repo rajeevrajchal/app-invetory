@@ -1,4 +1,6 @@
-import { Stack, TextInput } from "@mantine/core";
+"use client";
+
+import { Button, Flex, Stack, TextInput } from "@mantine/core";
 import { useFormik } from "formik";
 
 const CreateSystemFrom = () => {
@@ -10,8 +12,13 @@ const CreateSystemFrom = () => {
       console.log("the values", values);
     },
   });
+
   return (
     <Stack>
+      <Flex justify="flex-end" gap="md">
+        <Button variant="outline">Cancel</Button>
+        <Button>Add System</Button>
+      </Flex>
       <TextInput
         label="Name"
         placeholder="System Name"

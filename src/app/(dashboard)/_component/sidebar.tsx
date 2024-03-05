@@ -1,5 +1,5 @@
-import { SidebarItem, sidebarMenu } from "@constant/sidebar";
-import useAuth from "@hook/store/use-auth";
+import { SidebarItem, sidebarMenu } from "@/constant/sidebar";
+import useAuth from "@/hook/store/use-auth";
 import {
   AppShell,
   Box,
@@ -10,7 +10,7 @@ import {
   NavLink,
   Stack,
 } from "@mantine/core";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 
 interface SidebarProps {
   desktopOpened: boolean;
@@ -20,7 +20,7 @@ interface SidebarProps {
 
 const Sidebar = (props: SidebarProps) => {
   const { desktopOpened, mobileOpened, toggleMobileOpened } = props;
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const { loginUser } = useAuth();
 
   const getSideMenuViaRole: SidebarItem[] = sidebarMenu.filter((item) => {
@@ -50,11 +50,11 @@ const Sidebar = (props: SidebarProps) => {
             />
             {desktopOpened ? (
               <Center w="100%" h={48}>
-                <Image src="/vite.svg" h="100%" w="100%" alt="Domainsync" />
+                <Image src="/vite.svg" h="100%" w="100%" alt="AtiNova" />
               </Center>
             ) : (
               <Center w="100%" h={48}>
-                <Image src="/vite.svg" h="100%" alt="Domainsync" />
+                <Image src="/vite.svg" h="100%" alt="AtiNova" />
               </Center>
             )}
           </Flex>

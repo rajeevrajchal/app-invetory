@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Flex, Stack, Text } from "@mantine/core";
 import sortBy from "lodash/sortBy";
 import {
@@ -112,7 +114,6 @@ const Table = (props: TableProps) => {
         fetching={fetching}
         records={getData(currentPage ? data : records) || []}
         columns={columns}
-        noRecordsText="No records to show"
         idAccessor={idAccessor || "id"}
         sortStatus={sortStatus}
         onSortStatusChange={setSortStatus}

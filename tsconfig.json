@@ -1,45 +1,26 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
     "skipLibCheck": true,
-
-    /* Bundler mode */
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
-      "#root/*": ["."],
-      "@*": ["./src/*"],
-      "@components/*": ["./src/components/*"],
-      "@layout/*": ["./src/layout/*"],
-      "@module/*": ["./src/module/*"],
-      "@hook/*": ["./src/hook/*"],
-      "@model/*": ["./src/model/*"],
-      "@enum/*": ["./src/enum/*"],
-      "@service/*": ["./src/service/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@types/*": ["src/types/*"],
-      "@constant/*": ["./src/constant/*"],
-      "@routes/*": ["src/routes/*"],
-      "@validations": ["src/module/auth/validations/*"],
-      "@plugins": ["./src/plugins/*"],
-      "@utils": ["./src/utils/*"],
-      "@api": ["./src/api/*"]
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

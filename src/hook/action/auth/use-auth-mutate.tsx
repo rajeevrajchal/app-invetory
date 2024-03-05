@@ -1,10 +1,10 @@
-import AuthService from "@api/services/auth.service";
-import { FORGET_PASSWORD, RESET_PASSWORD } from "@api/types/auth.type";
+import AuthService from "@/api/services/auth.service";
+import { FORGET_PASSWORD, RESET_PASSWORD } from "@/api/types/auth.type";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 const useAuthMutate = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const forgetPassword = useMutation({
     mutationFn: (email: string) => AuthService.forgetPassword(email),
   });
@@ -13,9 +13,7 @@ const useAuthMutate = () => {
     mutationFn: (payload: FORGET_PASSWORD) =>
       AuthService.forgetPasswordWithOtp(payload),
     onSuccess: (data: any) => {
-      navigate(data?.link, {
-        replace: true,
-      });
+      router.replace(data?.link);
     },
   });
 

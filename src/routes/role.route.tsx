@@ -1,6 +1,6 @@
-import NotFound from "@components/errors/not-found";
-import useAuth from "@hook/store/use-auth";
-import { $FIX_ME } from "@types/fix-me";
+import NotFound from "@/components/errors/not-found";
+import useAuth from "@/hook/store/use-auth";
+import { $FIX_ME } from "@/types/fix-me";
 import { PropsWithChildren } from "react";
 
 interface RoleRouteProps extends PropsWithChildren {
