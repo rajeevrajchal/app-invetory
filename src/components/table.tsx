@@ -102,8 +102,8 @@ const Table = (props: TableProps) => {
             {label}
           </Text>
         )}
-        {headerLeftContent && <Box>{headerLeftContent}</Box>}
-        <Box>{headerContent}</Box>
+        {headerLeftContent && <Box className="w-fit">{headerLeftContent}</Box>}
+        <Box className="w-fit">{headerContent}</Box>
       </Flex>
       <DataTable
         withTableBorder

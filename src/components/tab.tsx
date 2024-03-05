@@ -14,10 +14,11 @@ export type TabItem = {
 interface TabProps {
   tabs: TabItem[];
   initial?: string | null;
+  noPanel?: boolean;
 }
 
 const Tab = (props: TabProps) => {
-  const { tabs, initial } = props;
+  const { tabs, initial, noPanel = false } = props;
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -57,11 +58,12 @@ const Tab = (props: TabProps) => {
         ))}
       </Tabs.List>
 
-      {tabs.map((tab) => (
-        <Tabs.Panel key={tab.value} value={tab.value} mt="md">
-          {tab.component}
-        </Tabs.Panel>
-      ))}
+      {!noPanel &&
+        tabs.map((tab) => (
+          <Tabs.Panel key={tab.value} value={tab.value} mt="md">
+            {tab.component}
+          </Tabs.Panel>
+        ))}
     </Tabs>
   );
 };
