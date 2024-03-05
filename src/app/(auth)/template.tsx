@@ -1,8 +1,8 @@
 import { Box, Center, Flex, Image, Stack } from "@mantine/core";
 
-import logo from "@assets/react.svg";
-import { PropsWithChildren } from "react";
+import logo from "@/assets/react.svg";
 
+import { PropsWithChildren } from "react";
 const AuthTemplate = (props: PropsWithChildren) => {
   const { children } = props;
 
