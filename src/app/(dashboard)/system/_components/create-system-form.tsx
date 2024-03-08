@@ -1,5 +1,6 @@
 "use client";
 
+import { $FIX_ME } from "@/types/fix-me";
 import {
   Button,
   Fieldset,
@@ -12,7 +13,14 @@ import {
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
 
-const CreateSystemFrom = () => {
+interface CreateSystemFrom {
+  handleSubmit: {
+    mutate: (val: $FIX_ME) => void;
+    isPending: boolean;
+  };
+}
+const CreateSystemFrom = (props: CreateSystemFrom) => {
+  const { handleSubmit } = props;
   const router = useRouter();
 
   const systemForm = useFormik({
@@ -28,6 +36,9 @@ const CreateSystemFrom = () => {
     },
     onSubmit: (values) => {
       console.log("the values", values);
+      handleSubmit.mutate({
+        payload: values,
+      });
     },
   });
 
@@ -35,10 +46,20 @@ const CreateSystemFrom = () => {
     <form onSubmit={systemForm.handleSubmit}>
       <Stack>
         <Flex justify="flex-end" gap="md">
-          <Button variant="outline" onClick={() => router.back()}>
+          <Button
+            disabled={handleSubmit.isPending}
+            variant="outline"
+            onClick={() => router.back()}
+          >
             Cancel
           </Button>
-          <Button type="submit">Add System</Button>
+          <Button
+            type="submit"
+            loading={handleSubmit.isPending}
+            disabled={handleSubmit.isPending}
+          >
+            Add System
+          </Button>
         </Flex>
         <Fieldset legend="System Information">
           <Grid>
