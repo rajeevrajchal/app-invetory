@@ -43,6 +43,11 @@ const AuthService = {
       method: METHOD.POST,
       data: payload,
     }),
+  google: () =>
+    useAxios({
+      url: "google/login",
+      method: METHOD.POST,
+    }),
 };
 
 export default AuthService;

@@ -1,3 +1,4 @@
+import { isEmpty } from "lodash";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import AppRoute from "./routes/route.constant";
@@ -9,24 +10,14 @@ export function middleware(request: NextRequest) {
       headers: request.headers,
     },
   });
-  response.cookies.set("token", "hello next app", { httpOnly: true });
 
-  const isUserExist = true;
-  const token = request.cookies.get("token")?.value || "";
+  const user = request.cookies.get("user")?.value || "";
 
-  if (
-    isUserExist &&
-    publicRoute.includes(request.nextUrl.pathname) &&
-    token.length > 0
-  ) {
+  if (!isEmpty(user) && publicRoute.includes(request.nextUrl.pathname)) {
     return NextResponse.redirect(new URL(AppRoute.home, request.url));
   }
 
-  if (
-    !isUserExist &&
-    !publicRoute.includes(request.nextUrl.pathname) &&
-    !token
-  ) {
+  if (isEmpty(user) && !publicRoute.includes(request.nextUrl.pathname)) {
     return NextResponse.redirect(new URL(AppRoute.login, request.url));
   }
 

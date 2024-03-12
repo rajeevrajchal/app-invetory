@@ -37,7 +37,7 @@ export default function RootLayout({
               <ToastContainer />
               <AuthProvider>
                 <BreadcrumbProvider>{children}</BreadcrumbProvider>
-              </AuthProvider>{" "}
+              </AuthProvider>
             </QueryClientProvider>
           </MantineProvider>
         </Suspense>

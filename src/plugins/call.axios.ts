@@ -1,5 +1,5 @@
 import { user_token_key } from "@/constant/ls-key";
-import useLocalStorage from "@/hook/utils/use-localstorage";
+import useCookies from "@/hook/utils/use-cookies";
 import axios, {
   AxiosError,
   AxiosRequestConfig,
@@ -32,10 +32,10 @@ export enum METHOD {
   DELETE = "DELETE",
 }
 
-const baseUrl = `${process.env.NEXT_APP_API_URL}/api/v1/`;
+const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/`;
 
 const useAxios = async <T>(props: AxiosAPI): Promise<T> => {
-  const { getStorageData } = useLocalStorage();
+  const { getStorageData } = useCookies();
   const {
     url,
     method,

@@ -29,7 +29,7 @@ interface AppBarProps {
 
 const AppBar = (props: AppBarProps) => {
   const { desktopOpened, toggleDesktop, toggleMobileOpened } = props;
-  const { logout, loginUser } = useAuth();
+  const { logout, loginUser, loading } = useAuth();
 
   return (
     <AppShell.Header px="sm">
@@ -64,65 +64,72 @@ const AppBar = (props: AppBarProps) => {
             <BsLayoutSidebarInset />
           </ActionIcon>
         </Group>
-        {loginUser?.id && (
-          <Group gap="lg" preventGrowOverflow={false} wrap="nowrap" grow>
-            {/* quick buttons */}
-            <Menu
-              position="bottom-end"
-              trigger={
-                <Button size="xs" leftSection={<FaPlus />}>
-                  Start
-                </Button>
-              }
-              menu={[
-                {
-                  leftSection: <PiProjectorScreenChartLight size={20} />,
-                  children: <Text className="capitalize">Add System</Text>,
-                },
-              ]}
-            />
-            {/* profile button */}
-            <MMenu shadow="md" width={200} withArrow arrowSize={12}>
-              <MMenu.Target>
-                <Center>
-                  <Avatar color="cyan" alt={loginUser.name} size="sm">
-                    {getInitialsName(loginUser.name)}
-                  </Avatar>
-                </Center>
-              </MMenu.Target>
-              <MMenu.Dropdown>
-                <MMenu.Label>
-                  <Paper>
-                    <Text size="sm" className="capitalize">
-                      {loginUser.name}
-                    </Text>
-                    <Text size="sm" className="capitalize">
-                      {loginUser.role}
-                    </Text>
-                  </Paper>
-                </MMenu.Label>
-                <Divider />
-                <MMenu.Item component="a" href={AppRoute.profile} mt="xs">
-                  Profile
-                </MMenu.Item>
-                <MMenu.Item
-                  component="button"
-                  variant="filled"
-                  color="red"
-                  disabled={logout.isPending}
-                  onClick={() => logout.mutate()}
-                >
-                  {logout.isPending ? (
-                    <Loader color="red" size="xs" />
-                  ) : (
-                    " Logout"
-                  )}
-                </MMenu.Item>
-              </MMenu.Dropdown>
-            </MMenu>
-          </Group>
-        )}
-        <ColorSwitch />
+        <Flex gap="md">
+          {loading ? (
+            <Loader color="blue" />
+          ) : (
+            loginUser?.id && (
+              <Group gap="lg" preventGrowOverflow={false} wrap="nowrap" grow>
+                {/* quick buttons */}
+                <Menu
+                  position="bottom-end"
+                  trigger={
+                    <Button size="xs" leftSection={<FaPlus />}>
+                      Start
+                    </Button>
+                  }
+                  menu={[
+                    {
+                      leftSection: <PiProjectorScreenChartLight size={20} />,
+                      children: <Text className="capitalize">Add System</Text>,
+                    },
+                  ]}
+                />
+
+                {/* profile button */}
+                <MMenu shadow="md" width={200} withArrow arrowSize={12}>
+                  <MMenu.Target>
+                    <Center>
+                      <Avatar color="cyan" alt={loginUser.name} size="sm">
+                        {getInitialsName(loginUser.name)}
+                      </Avatar>
+                    </Center>
+                  </MMenu.Target>
+                  <MMenu.Dropdown>
+                    <MMenu.Label>
+                      <Paper>
+                        <Text size="sm" className="capitalize">
+                          {loginUser.name}
+                        </Text>
+                        <Text size="sm" className="capitalize">
+                          {loginUser.role}
+                        </Text>
+                      </Paper>
+                    </MMenu.Label>
+                    <Divider />
+                    <MMenu.Item component="a" href={AppRoute.profile} mt="xs">
+                      Profile
+                    </MMenu.Item>
+                    <MMenu.Item
+                      component="button"
+                      variant="filled"
+                      color="red"
+                      disabled={logout.isPending}
+                      onClick={() => logout.mutate()}
+                    >
+                      {logout.isPending ? (
+                        <Loader color="red" size="xs" />
+                      ) : (
+                        "Logout"
+                      )}
+                    </MMenu.Item>
+                  </MMenu.Dropdown>
+                </MMenu>
+              </Group>
+            )
+          )}
+          <ColorSwitch />
+        </Flex>
       </Flex>
     </AppShell.Header>
   );

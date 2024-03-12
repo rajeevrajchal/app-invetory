@@ -2,13 +2,11 @@
 
 import AuthService from "@/api/services/auth.service";
 import { LOGIN_TYPE } from "@/api/types/auth.type";
-import {
-  user_info_key,
-  user_refresh_token_key,
-  user_token_key,
-} from "@/constant/ls-key";
+import { user_info_key, user_token_key } from "@/constant/ls-key";
 import { USER } from "@/model/user.model";
+import AppRoute from "@/routes/route.constant";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import {
   ReactElement,
   createContext,
@@ -17,13 +15,17 @@ import {
   useState,
 } from "react";
 import { toast } from "react-toastify";
-import useLocalStorage from "../utils/use-localstorage";
+import useCookies from "../utils/use-cookies";
 
 interface UseAuthProps {
-  isLoggedIn: boolean;
   loading: boolean;
+  isLoggedIn: boolean;
   loginUser: USER;
 
+  google: {
+    mutate: () => void;
+    isPending: boolean;
+  };
   login: {
     mutate: (payload: LOGIN_TYPE) => void;
     isPending: boolean;
@@ -38,28 +40,31 @@ const authContext = createContext<UseAuthProps>({} as UseAuthProps);
 const { Provider } = authContext;
 
 const useAuthData = () => {
-  const { setStorageData, getStorageData, removeStorageData } =
-    useLocalStorage();
+  const { clearStorage, getStorageData, removeStorageData } = useCookies();
+  const router = useRouter();
 
+  const [loading, setLoading] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
   const [loginUser, setLoginUser] = useState<USER>({} as USER);
 
-  const clearSession = async () => {
-    setIsLoggedIn(false);
-    setLoginUser({} as USER);
-    await removeStorageData(user_token_key);
-    await removeStorageData(user_refresh_token_key);
-  };
+  const google = useMutation({
+    mutationFn: () => AuthService.google(),
+    onSuccess: async (data: any) => {
+      console.log("data", data);
+      router.replace(data?.redirect_url);
+    },
+    onError: (error) => {
+      toast.error(error?.message || "Failed to login");
+    },
+  });
 
   const login = useMutation({
     mutationFn: (payload: LOGIN_TYPE) => AuthService.login(payload),
     onSuccess: async (data: any) => {
-      await setStorageData(user_token_key, data?.access_token);
-      await setStorageData(user_refresh_token_key, data?.refresh_token);
-      await setStorageData(user_info_key, data?.user);
-
+      clearStorage();
       setIsLoggedIn(true);
       setLoginUser(data?.user);
+      router.refresh();
     },
     onError: (error) => {
       toast.error(error?.message || "Failed to login");
@@ -69,39 +74,28 @@ const useAuthData = () => {
   const logout = useMutation({
     mutationFn: () => AuthService.logout(),
     onSuccess: async () => {
-      await removeStorageData(user_token_key);
-      await removeStorageData(user_refresh_token_key);
-
+      clearStorage();
       setLoginUser({} as USER);
       setIsLoggedIn(false);
+      router.replace(AppRoute.login);
     },
     onError: (error) => {
       toast.error(error?.message || "Failed to logout");
     },
   });
 
-  const whoIAM = useMutation({
-    mutationFn: () => AuthService.whoIAM(),
-    onSuccess: (data: any) => {
-      setIsLoggedIn(true);
-      setLoginUser(data?.whoAmI);
-    },
-    onError: (error) => {
-      toast.error(error?.message || "Failed to login");
-      clearSession();
-    },
-  });
-
   const checkAuthentication = async () => {
+    setLoading(true);
     const tokenFromLS = await getStorageData(user_token_key);
     const userFromLS = await getStorageData(user_info_key);
     if (tokenFromLS && userFromLS) {
       setIsLoggedIn(true);
-      setLoginUser(userFromLS);
+      setLoginUser(JSON.parse(userFromLS));
     } else {
       setIsLoggedIn(false);
       setLoginUser({} as USER);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -110,11 +104,12 @@ const useAuthData = () => {
   }, []);
 
   return {
-    loading: whoIAM.isPending,
+    loading,
     isLoggedIn,
     loginUser,
 
     login: login,
+    google: google,
     logout: logout,
   };
 };
