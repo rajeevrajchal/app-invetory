@@ -12,6 +12,7 @@ import {
 } from "@mantine/core";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
+import createSystemValidation from "../_validation/create-system.validation";
 
 interface CreateSystemFrom {
   handleSubmit: {
@@ -34,11 +35,10 @@ const CreateSystemFrom = (props: CreateSystemFrom) => {
 
       description: "",
     },
+    validationSchema: createSystemValidation,
     onSubmit: (values) => {
       console.log("the values", values);
-      handleSubmit.mutate({
-        payload: values,
-      });
+      handleSubmit.mutate(values);
     },
   });
 

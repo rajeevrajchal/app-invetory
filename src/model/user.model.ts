@@ -1,3 +1,21 @@
-import { $FIX_ME } from "@/types/fix-me";
+export type USER = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+  isActive: boolean;
+  otp: string;
+  otp_expiry: Date;
+  auth_provider: string;
+  auth_provider_id: string;
 
-export type USER = $FIX_ME;
+  refresh_token: any;
+  reset_token: any;
+
+  is_temp: boolean;
+
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
+};
