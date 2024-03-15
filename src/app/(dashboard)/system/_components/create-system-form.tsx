@@ -1,5 +1,6 @@
 "use client";
 
+import { SYSTEM } from "@/model/system.model";
 import { $FIX_ME } from "@/types/fix-me";
 import {
   Button,
@@ -11,33 +12,34 @@ import {
   Textarea,
 } from "@mantine/core";
 import { useFormik } from "formik";
+import { isEmpty } from "lodash";
 import { useRouter } from "next/navigation";
 import createSystemValidation from "../_validation/create-system.validation";
 
 interface CreateSystemFrom {
+  data?: Partial<SYSTEM>;
   handleSubmit: {
     mutate: (val: $FIX_ME) => void;
     isPending: boolean;
   };
 }
 const CreateSystemFrom = (props: CreateSystemFrom) => {
-  const { handleSubmit } = props;
+  const { data, handleSubmit } = props;
   const router = useRouter();
 
   const systemForm = useFormik({
     initialValues: {
-      name: "",
-      domain: "",
+      name: data?.name || "",
+      domain: data?.domain || "",
 
-      location: "",
-      repository: "",
-      branch: "",
+      location: data?.location || "",
+      repository: data?.repository || "",
+      branch: data?.branch || "",
 
-      description: "",
+      description: data?.description || "",
     },
     validationSchema: createSystemValidation,
     onSubmit: (values) => {
-      console.log("the values", values);
       handleSubmit.mutate(values);
     },
   });
@@ -58,7 +60,7 @@ const CreateSystemFrom = (props: CreateSystemFrom) => {
             loading={handleSubmit.isPending}
             disabled={handleSubmit.isPending}
           >
-            Add System
+            {isEmpty(data) ? "Add System" : "Update System"}
           </Button>
         </Flex>
         <Fieldset legend="System Information">
@@ -123,12 +125,32 @@ const CreateSystemFrom = (props: CreateSystemFrom) => {
                 }
               />
             </Grid.Col>
+            <Grid.Col
+              span={{
+                base: 12,
+                md: 6,
+              }}
+            >
+              <TextInput
+                label="Repository"
+                placeholder="Repository (Where your code lives)"
+                name="repository"
+                onChange={systemForm.handleChange}
+                value={systemForm.values.repository}
+                error={
+                  systemForm.touched?.repository &&
+                  systemForm.errors?.repository &&
+                  systemForm.errors?.repository
+                }
+              />
+            </Grid.Col>
           </Grid>
         </Fieldset>
         <Textarea
           label="Description (Optional)"
           placeholder="About system."
           name="description"
+          autosize={true}
           onChange={systemForm.handleChange}
           value={systemForm.values.description}
         />

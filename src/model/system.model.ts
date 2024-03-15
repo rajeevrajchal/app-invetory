@@ -1,3 +1,4 @@
+import { SYSTEM_STATUS } from "@/enum/system-status.enum";
 import { USER } from "./user.model";
 
 export interface SYSTEM {
@@ -8,7 +9,7 @@ export interface SYSTEM {
   description: string;
   repository: string;
   branch: string;
-  status: string;
+  status: SYSTEM_STATUS;
   user: Partial<USER>;
   createdAt: Date;
   updatedAt: Date;

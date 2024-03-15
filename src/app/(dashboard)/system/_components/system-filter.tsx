@@ -2,7 +2,7 @@
 
 import SearchInput from "@/components/search-input";
 import AppRoute from "@/routes/route.constant";
-import { Button, Flex, Select } from "@mantine/core";
+import { Button, Flex } from "@mantine/core";
 import { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 
@@ -13,17 +13,6 @@ const SystemFilter = () => {
   return (
     <Flex align="center" gap="md">
       <SearchInput query={searchQuery} setQuery={setSearchQuery} />
-      <Select
-        searchable
-        placeholder="Select Status"
-        data={[]}
-        clearable
-        value={status}
-        onChange={(value: string | null) => setStatus(value)}
-        style={{
-          textTransform: "capitalize",
-        }}
-      />
       <Button
         leftSection={<IoMdAdd size={14} />}
         variant="light"

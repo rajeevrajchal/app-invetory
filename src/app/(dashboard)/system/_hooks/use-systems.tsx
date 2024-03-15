@@ -1,10 +1,14 @@
 import SystemService from "@/api/services/system.service";
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
 const useSystem = () => {
+  const searchParams = useSearchParams();
+  const activeTab = searchParams.get("tab");
+
   const system_query = useQuery({
-    queryKey: ["system.all"],
-    queryFn: () => SystemService.all(),
+    queryKey: ["system.all", activeTab],
+    queryFn: () => SystemService.all(activeTab || ""),
   });
 
   return {

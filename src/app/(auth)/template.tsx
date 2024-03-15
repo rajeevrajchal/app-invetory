@@ -1,17 +1,10 @@
 "use client";
 import ColorSwitch from "@/components/color-switch";
-import {
-  Container,
-  Flex,
-  Stack,
-  Title,
-  useMantineColorScheme,
-} from "@mantine/core";
+import { Container, Flex, Stack, Title } from "@mantine/core";
 import { PropsWithChildren } from "react";
 
 const AuthTemplate = (props: PropsWithChildren) => {
   const { children } = props;
-  const { colorScheme } = useMantineColorScheme();
 
   return (
     <div className="w-full h-screen flex flex-col gap-4">
