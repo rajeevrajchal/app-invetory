@@ -9,6 +9,8 @@ const AppRoute = {
   create_system: "/system/create",
   system_detail: (system_id: string) => `/system/${system_id}`,
   system_edit: (system_id: string) => `/system/${system_id}/edit`,
+  system_sub_system: (system_id: string) => `/system/${system_id}/sub-system`,
+  system_feature: (system_id: string) => `/system/${system_id}/feature`,
 
   users: "/users",
   contracts: "/contracts",

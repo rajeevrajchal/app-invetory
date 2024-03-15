@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 
 const useSystem = () => {
   const param = useParams();
-  const system_id = param[":id"] || "";
+  const system_id = param.id || "";
 
   const system_query = useQuery({
     queryKey: ["system.detail", system_id],
