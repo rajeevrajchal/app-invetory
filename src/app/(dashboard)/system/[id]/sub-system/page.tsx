@@ -1,5 +1,11 @@
+import { Stack } from "@mantine/core";
+
 const SubSystem = () => {
-  return <div>SubSystem</div>;
+  return (
+    <Stack>
+      <p>helo</p>
+    </Stack>
+  );
 };
 
 export default SubSystem;

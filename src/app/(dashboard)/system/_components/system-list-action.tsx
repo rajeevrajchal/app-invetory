@@ -2,7 +2,9 @@ import Menu from "@/components/menu";
 import ConfirmationModal from "@/components/modal/confirmation-modal";
 import { SYSTEM_STATUS } from "@/enum/system-status.enum";
 import AppRoute from "@/routes/route.constant";
-import { ActionIcon, Text } from "@mantine/core";
+import { $FIX_ME } from "@/types/fix-me";
+import { ActionIcon, Button, Flex, Text } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaEye, FaRegPauseCircle } from "react-icons/fa";
@@ -15,14 +17,18 @@ interface SystemListActionProps {
   system_id: string;
   status: SYSTEM_STATUS;
   isDeleted: boolean;
+  onRow?: boolean;
 }
 
 export type SYSTEM_MODAL = "delete" | "pause" | "restore" | "re-active";
 
 const SystemListAction = (props: SystemListActionProps) => {
-  const { system_id, status, isDeleted } = props;
+  const { system_id, status, isDeleted, onRow } = props;
+
   const [modal, setModal] = useState<SYSTEM_MODAL | null>(null);
   const { deleteSystem, reStoreSystem, updateSystem } = useSystemMutate();
+
+  const matches = useMediaQuery("(min-width: 900px)");
 
   const handleModalClose = () => {
     setModal(null);
@@ -164,6 +170,37 @@ const SystemListAction = (props: SystemListActionProps) => {
       },
     },
   };
+
+  if (onRow && matches) {
+    return (
+      <>
+        <Flex gap="sm">
+          {getMenuViaRole.map((item: $FIX_ME, index: number) => {
+            return (
+              <Button
+                variant="outline"
+                size="xs"
+                key={`menu-${index}`}
+                {...item}
+              >
+                {item.children}
+              </Button>
+            );
+          })}
+        </Flex>
+        {modal !== null && (
+          <ConfirmationModal
+            opened
+            close={handleModalClose}
+            title={confirmation_modal[modal]?.title}
+            description={confirmation_modal[modal]?.description}
+            confirm={confirmation_modal[modal]?.confirm}
+            loading={confirmation_modal[modal]?.loading}
+          />
+        )}
+      </>
+    );
+  }
 
   return (
     <>
