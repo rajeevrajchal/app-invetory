@@ -69,7 +69,7 @@ const column: DataTableColumn[] = [
     render: (record: any) => {
       const { domain } = record;
       return (
-        <Anchor href="https://mantine.dev/" target="_blank" underline="never">
+        <Anchor href={domain} target="_blank" underline="never">
           <Flex gap="md" align="center">
             <Text>{domain} </Text>
             <FaExternalLinkAlt />

@@ -26,8 +26,8 @@ export const sidebarMenu: SidebarItem[] = [
   },
   {
     icon: <GiSolarSystem size={22} />,
-    label: "Systems",
-    key: "system",
+    label: "Project",
+    key: "project",
     href: AppRoute.system,
     allow: "*",
   },

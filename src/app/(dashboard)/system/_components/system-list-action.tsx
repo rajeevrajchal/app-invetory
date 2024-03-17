@@ -5,6 +5,7 @@ import AppRoute from "@/routes/route.constant";
 import { $FIX_ME } from "@/types/fix-me";
 import { ActionIcon, Button, Flex, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaEye, FaRegPauseCircle } from "react-icons/fa";
@@ -24,6 +25,7 @@ export type SYSTEM_MODAL = "delete" | "pause" | "restore" | "re-active";
 
 const SystemListAction = (props: SystemListActionProps) => {
   const { system_id, status, isDeleted, onRow } = props;
+  const pathname = usePathname();
 
   const [modal, setModal] = useState<SYSTEM_MODAL | null>(null);
   const { deleteSystem, reStoreSystem, updateSystem } = useSystemMutate();
@@ -53,7 +55,7 @@ const SystemListAction = (props: SystemListActionProps) => {
       component: "a",
       href: AppRoute.system_detail(system_id),
       allow: "*",
-      disable: false,
+      disable: pathname.includes(`system/${system_id}`),
     },
     {
       leftSection: <GrMultiple size={18} />,
