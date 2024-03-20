@@ -3,6 +3,7 @@ import { BreadcrumbProvider } from "@/hook/store/use-breadcrumb";
 import queryClient from "@/plugins/react-query";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { QueryClientProvider } from "@tanstack/react-query";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 
@@ -37,6 +38,7 @@ export default function RootLayout({
             </AuthProvider>
           </QueryClientProvider>
         </MantineProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
