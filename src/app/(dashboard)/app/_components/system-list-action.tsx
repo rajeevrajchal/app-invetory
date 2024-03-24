@@ -15,7 +15,7 @@ import { MdDelete, MdEdit, MdSettingsBackupRestore } from "react-icons/md";
 import useSystemMutate from "../_hooks/use-system-mutate";
 
 interface SystemListActionProps {
-  system_id: string;
+  app_id: string;
   status: SYSTEM_STATUS;
   isDeleted: boolean;
   onRow?: boolean;
@@ -24,7 +24,7 @@ interface SystemListActionProps {
 export type SYSTEM_MODAL = "delete" | "pause" | "restore" | "re-active";
 
 const SystemListAction = (props: SystemListActionProps) => {
-  const { system_id, status, isDeleted, onRow } = props;
+  const { app_id, status, isDeleted, onRow } = props;
   const pathname = usePathname();
 
   const [modal, setModal] = useState<SYSTEM_MODAL | null>(null);
@@ -45,7 +45,7 @@ const SystemListAction = (props: SystemListActionProps) => {
       leftSection: <MdEdit size={18} />,
       children: <Text className="capitalize">Edit</Text>,
       component: "a",
-      href: AppRoute.system_edit(system_id),
+      href: AppRoute.app_edit(app_id),
       allow: "*",
       disable: status === SYSTEM_STATUS.ON_HOLD || isDeleted,
     },
@@ -53,15 +53,15 @@ const SystemListAction = (props: SystemListActionProps) => {
       leftSection: <FaEye size={18} />,
       children: <Text className="capitalize">Detail</Text>,
       component: "a",
-      href: AppRoute.system_detail(system_id),
+      href: AppRoute.app_detail(app_id),
       allow: "*",
-      disable: pathname.includes(`system/${system_id}`),
+      disable: pathname.includes(`system/${app_id}`),
     },
     {
       leftSection: <GrMultiple size={18} />,
-      children: <Text className="capitalize">Sub system</Text>,
+      children: <Text className="capitalize">Sub Apps</Text>,
       component: "a",
-      href: AppRoute.system_sub_system(system_id),
+      href: AppRoute.app_sub_app(app_id),
       allow: "*",
       disable: false,
     },
@@ -69,7 +69,7 @@ const SystemListAction = (props: SystemListActionProps) => {
       leftSection: <LiaFeatherAltSolid size={18} />,
       children: <Text className="capitalize">Features</Text>,
       component: "a",
-      href: AppRoute.system_feature(system_id),
+      href: AppRoute.app_feature(app_id),
       allow: "*",
       disable: false,
     },
@@ -126,7 +126,7 @@ const SystemListAction = (props: SystemListActionProps) => {
       description: "Delete this system",
       loading: deleteSystem.isPending,
       confirm: () => {
-        deleteSystem.mutate(system_id, {
+        deleteSystem.mutate(app_id, {
           onSuccess: () => {
             handleModalClose();
           },
@@ -142,7 +142,7 @@ const SystemListAction = (props: SystemListActionProps) => {
           system: {
             status: SYSTEM_STATUS.ON_HOLD,
           },
-          id: system_id,
+          id: app_id,
         });
       },
     },
@@ -151,7 +151,7 @@ const SystemListAction = (props: SystemListActionProps) => {
       description: "Restore",
       loading: reStoreSystem.isPending,
       confirm: () => {
-        reStoreSystem.mutate(system_id, {
+        reStoreSystem.mutate(app_id, {
           onSuccess: () => {
             handleModalClose();
           },
@@ -167,7 +167,7 @@ const SystemListAction = (props: SystemListActionProps) => {
           system: {
             status: SYSTEM_STATUS.ACTIVE,
           },
-          id: system_id,
+          id: app_id,
         });
       },
     },

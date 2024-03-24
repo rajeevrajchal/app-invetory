@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 
 export async function getSystemData(id: string) {
   try {
@@ -16,6 +17,6 @@ export async function getSystemData(id: string) {
     });
     return response.data;
   } catch (error) {
-    throw error;
+    notFound();
   }
 }

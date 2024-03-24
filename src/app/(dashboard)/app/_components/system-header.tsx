@@ -39,7 +39,7 @@ const SystemHeader = (props: SystemHeaderProps) => {
       </Flex>
       <SystemListAction
         onRow={true}
-        system_id={system.id}
+        app_id={system.id}
         status={system.status}
         isDeleted={system.deletedAt !== null}
       />

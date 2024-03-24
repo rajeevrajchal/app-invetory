@@ -75,6 +75,7 @@ const Sidebar = (props: SidebarProps) => {
                 style={{
                   borderRadius: "4px",
                 }}
+                tt="capitalize"
                 h="lg"
                 py="md"
                 href={`${item.href}`}

@@ -53,6 +53,13 @@ const SystemService = {
       method: METHOD.DELETE,
     });
   },
+
+  sub_app_create: (payload: any, id: string) =>
+    useAxios({
+      url: `${api}/${id}/sub-system`,
+      method: METHOD.POST,
+      data: payload,
+    }),
 };
 
 export default SystemService;

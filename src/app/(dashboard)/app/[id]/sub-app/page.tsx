@@ -15,6 +15,7 @@ import {
   SYSTEM_STATUS_NAME,
 } from "@/enum/system-status.enum";
 import { SYSTEM } from "@/model/system.model";
+import AppRoute from "@/routes/route.constant";
 import { Anchor, Badge, Flex, Text } from "@mantine/core";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import SystemFilter from "../../_components/system-filter";
@@ -97,14 +98,17 @@ const column: DataTableColumn[] = [
         <SystemListAction
           isDeleted={deletedAt !== null}
           status={status}
-          system_id={id}
+          app_id={id}
         />
       );
     },
   },
 ];
 
-const SubSystem = () => {
+const SubSystem = (props: { params: { id: string } }) => {
+  const {
+    params: { id },
+  } = props;
   return (
     <Table
       headerLeftContent={
@@ -131,7 +135,12 @@ const SubSystem = () => {
         />
       }
       fetching={false}
-      headerContent={<SystemFilter />}
+      headerContent={
+        <SystemFilter
+          create_app_label="Create Sub App"
+          create_app_url={AppRoute.create_sub_app(id)}
+        />
+      }
       columns={column}
       data={[]}
     />

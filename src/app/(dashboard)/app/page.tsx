@@ -98,7 +98,7 @@ const column: DataTableColumn[] = [
         <SystemListAction
           isDeleted={deletedAt !== null}
           status={status}
-          system_id={id}
+          app_id={id}
         />
       );
     },
