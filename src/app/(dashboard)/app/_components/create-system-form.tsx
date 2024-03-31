@@ -45,7 +45,7 @@ const CreateSystemFrom = (props: CreateSystemFrom) => {
         app_id
           ? {
               ...values,
-              id: app_id,
+              parent_system_id: app_id,
             }
           : values
       );

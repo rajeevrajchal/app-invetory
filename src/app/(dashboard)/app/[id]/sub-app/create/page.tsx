@@ -7,7 +7,7 @@ const CreateSubApp = (props: { params: { id: string } }) => {
   const {
     params: { id },
   } = props;
-  const { createSubApp } = useSubAppMutate();
+  const { createSubApp } = useSubAppMutate(id);
 
   return <CreateSystemFrom app_id={id} handleSubmit={createSubApp} />;
 };

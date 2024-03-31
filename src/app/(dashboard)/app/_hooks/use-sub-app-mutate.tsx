@@ -1,20 +1,24 @@
 "use client";
-import SystemService from "@/api/services/system.service";
+import SubSystemService from "@/api/services/sub-system.service";
 import AppRoute from "@/routes/route.constant";
 import { useMutation } from "@tanstack/react-query";
 import { omit } from "lodash";
 import { useRouter } from "next/navigation";
 
-const useSubAppMutate = () => {
+const useSubAppMutate = (id: string) => {
   const router = useRouter();
 
   const createSubApp = useMutation({
     mutationFn: (payload: any) =>
-      SystemService.sub_app_create(omit(payload, ["id"]), payload.id),
+      SubSystemService.create(
+        payload.parent_system_id,
+        omit(payload, ["parent_system_id"])
+      ),
     onSuccess: () => {
-      router.push(AppRoute.app);
+      router.push(AppRoute.app_sub_app(id));
     },
   });
+
   return {
     createSubApp,
   };

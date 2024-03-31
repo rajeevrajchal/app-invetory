@@ -20,6 +20,7 @@ import { Anchor, Badge, Flex, Text } from "@mantine/core";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import SystemFilter from "../../_components/system-filter";
 import SystemListAction from "../../_components/system-list-action";
+import useSubSystem from "../../_hooks/use-sub-system";
 
 const column: DataTableColumn[] = [
   {
@@ -109,6 +110,8 @@ const SubSystem = (props: { params: { id: string } }) => {
   const {
     params: { id },
   } = props;
+  const { loading, systems } = useSubSystem(id);
+
   return (
     <Table
       headerLeftContent={
@@ -134,7 +137,7 @@ const SubSystem = (props: { params: { id: string } }) => {
           initial="active"
         />
       }
-      fetching={false}
+      fetching={loading}
       headerContent={
         <SystemFilter
           create_app_label="Create Sub App"
@@ -142,7 +145,7 @@ const SubSystem = (props: { params: { id: string } }) => {
         />
       }
       columns={column}
-      data={[]}
+      data={systems || []}
     />
   );
 };
