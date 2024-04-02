@@ -2,11 +2,11 @@ import { SidebarItem, sidebarMenu } from "@/constant/sidebar";
 import useAuth from "@/hook/store/use-auth";
 import {
   AppShell,
+  Avatar,
   Box,
   Burger,
   Center,
   Flex,
-  Image,
   NavLink,
   Stack,
 } from "@mantine/core";
@@ -49,12 +49,12 @@ const Sidebar = (props: SidebarProps) => {
               size="sm"
             />
             {desktopOpened ? (
-              <Center w="100%" h={48}>
-                <Image src="/logo.png" h="100%" w="100%" alt="AtiNova" />
+              <Center w="100%">
+                <Avatar src="/logo.png" alt="Ati-nova" size="xl" />
               </Center>
             ) : (
-              <Center w="100%" h={64}>
-                <Image src="/logo.png" h="100%" alt="AtiNova" />
+              <Center w="100%">
+                <Avatar src="/logo.png" alt="Ati-nova" size="xl" />
               </Center>
             )}
           </Flex>
