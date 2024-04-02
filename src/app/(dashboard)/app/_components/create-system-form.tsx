@@ -18,13 +18,14 @@ import createSystemValidation from "../_validation/create-system.validation";
 
 interface CreateSystemFrom {
   data?: Partial<SYSTEM>;
+  app_id?: string;
   handleSubmit: {
     mutate: (val: $FIX_ME) => void;
     isPending: boolean;
   };
 }
 const CreateSystemFrom = (props: CreateSystemFrom) => {
-  const { data, handleSubmit } = props;
+  const { data, app_id, handleSubmit } = props;
   const router = useRouter();
 
   const systemForm = useFormik({
@@ -40,7 +41,14 @@ const CreateSystemFrom = (props: CreateSystemFrom) => {
     },
     validationSchema: createSystemValidation,
     onSubmit: (values) => {
-      handleSubmit.mutate(values);
+      handleSubmit.mutate(
+        app_id
+          ? {
+              ...values,
+              parent_system_id: app_id,
+            }
+          : values
+      );
     },
   });
 

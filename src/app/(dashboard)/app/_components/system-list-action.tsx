@@ -2,7 +2,10 @@ import Menu from "@/components/menu";
 import ConfirmationModal from "@/components/modal/confirmation-modal";
 import { SYSTEM_STATUS } from "@/enum/system-status.enum";
 import AppRoute from "@/routes/route.constant";
-import { ActionIcon, Text } from "@mantine/core";
+import { $FIX_ME } from "@/types/fix-me";
+import { ActionIcon, Button, Flex, Text } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaEye, FaRegPauseCircle } from "react-icons/fa";
@@ -12,17 +15,23 @@ import { MdDelete, MdEdit, MdSettingsBackupRestore } from "react-icons/md";
 import useSystemMutate from "../_hooks/use-system-mutate";
 
 interface SystemListActionProps {
-  system_id: string;
+  app_id: string;
   status: SYSTEM_STATUS;
   isDeleted: boolean;
+  onRow?: boolean;
+  hideSecondary?: boolean;
 }
 
 export type SYSTEM_MODAL = "delete" | "pause" | "restore" | "re-active";
 
 const SystemListAction = (props: SystemListActionProps) => {
-  const { system_id, status, isDeleted } = props;
+  const { app_id, status, isDeleted, onRow, hideSecondary } = props;
+  const pathname = usePathname();
+
   const [modal, setModal] = useState<SYSTEM_MODAL | null>(null);
   const { deleteSystem, reStoreSystem, updateSystem } = useSystemMutate();
+
+  const matches = useMediaQuery("(min-width: 900px)");
 
   const handleModalClose = () => {
     setModal(null);
@@ -37,7 +46,7 @@ const SystemListAction = (props: SystemListActionProps) => {
       leftSection: <MdEdit size={18} />,
       children: <Text className="capitalize">Edit</Text>,
       component: "a",
-      href: AppRoute.system_edit(system_id),
+      href: AppRoute.app_edit(app_id),
       allow: "*",
       disable: status === SYSTEM_STATUS.ON_HOLD || isDeleted,
     },
@@ -45,25 +54,25 @@ const SystemListAction = (props: SystemListActionProps) => {
       leftSection: <FaEye size={18} />,
       children: <Text className="capitalize">Detail</Text>,
       component: "a",
-      href: AppRoute.system_detail(system_id),
+      href: AppRoute.app_detail(app_id),
       allow: "*",
-      disable: false,
+      disable: pathname.includes(`system/${app_id}`),
     },
     {
       leftSection: <GrMultiple size={18} />,
-      children: <Text className="capitalize">Sub system</Text>,
+      children: <Text className="capitalize">Sub Apps</Text>,
       component: "a",
-      href: AppRoute.system_sub_system(system_id),
+      href: AppRoute.app_sub_app(app_id),
       allow: "*",
-      disable: false,
+      disable: hideSecondary,
     },
     {
       leftSection: <LiaFeatherAltSolid size={18} />,
       children: <Text className="capitalize">Features</Text>,
       component: "a",
-      href: AppRoute.system_feature(system_id),
+      href: AppRoute.app_feature(app_id),
       allow: "*",
-      disable: false,
+      disable: hideSecondary,
     },
     {
       leftSection: <FaRegPauseCircle size={18} />,
@@ -118,7 +127,7 @@ const SystemListAction = (props: SystemListActionProps) => {
       description: "Delete this system",
       loading: deleteSystem.isPending,
       confirm: () => {
-        deleteSystem.mutate(system_id, {
+        deleteSystem.mutate(app_id, {
           onSuccess: () => {
             handleModalClose();
           },
@@ -134,7 +143,7 @@ const SystemListAction = (props: SystemListActionProps) => {
           system: {
             status: SYSTEM_STATUS.ON_HOLD,
           },
-          id: system_id,
+          id: app_id,
         });
       },
     },
@@ -143,7 +152,7 @@ const SystemListAction = (props: SystemListActionProps) => {
       description: "Restore",
       loading: reStoreSystem.isPending,
       confirm: () => {
-        reStoreSystem.mutate(system_id, {
+        reStoreSystem.mutate(app_id, {
           onSuccess: () => {
             handleModalClose();
           },
@@ -159,11 +168,42 @@ const SystemListAction = (props: SystemListActionProps) => {
           system: {
             status: SYSTEM_STATUS.ACTIVE,
           },
-          id: system_id,
+          id: app_id,
         });
       },
     },
   };
+
+  if (onRow && matches) {
+    return (
+      <>
+        <Flex gap="sm">
+          {getMenuViaRole.map((item: $FIX_ME, index: number) => {
+            return (
+              <Button
+                variant="outline"
+                size="xs"
+                key={`menu-${index}`}
+                {...item}
+              >
+                {item.children}
+              </Button>
+            );
+          })}
+        </Flex>
+        {modal !== null && (
+          <ConfirmationModal
+            opened
+            close={handleModalClose}
+            title={confirmation_modal[modal]?.title}
+            description={confirmation_modal[modal]?.description}
+            confirm={confirmation_modal[modal]?.confirm}
+            loading={confirmation_modal[modal]?.loading}
+          />
+        )}
+      </>
+    );
+  }
 
   return (
     <>

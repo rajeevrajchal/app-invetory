@@ -6,9 +6,14 @@ import { Button, Flex } from "@mantine/core";
 import { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 
-const SystemFilter = () => {
+interface SystemFilterProps {
+  create_app_label?: string;
+  create_app_url?: string;
+}
+
+const SystemFilter = (props: SystemFilterProps) => {
+  const { create_app_label, create_app_url } = props;
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [status, setStatus] = useState<string | null>(null);
 
   return (
     <Flex align="center" gap="md">
@@ -17,9 +22,9 @@ const SystemFilter = () => {
         leftSection={<IoMdAdd size={14} />}
         variant="light"
         component="a"
-        href={AppRoute.create_system}
+        href={create_app_url || AppRoute.create_app}
       >
-        Create System
+        {create_app_label || "Create App"}
       </Button>
     </Flex>
   );
