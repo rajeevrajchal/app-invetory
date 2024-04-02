@@ -19,12 +19,13 @@ interface SystemListActionProps {
   status: SYSTEM_STATUS;
   isDeleted: boolean;
   onRow?: boolean;
+  hideSecondary?: boolean;
 }
 
 export type SYSTEM_MODAL = "delete" | "pause" | "restore" | "re-active";
 
 const SystemListAction = (props: SystemListActionProps) => {
-  const { app_id, status, isDeleted, onRow } = props;
+  const { app_id, status, isDeleted, onRow, hideSecondary } = props;
   const pathname = usePathname();
 
   const [modal, setModal] = useState<SYSTEM_MODAL | null>(null);
@@ -63,7 +64,7 @@ const SystemListAction = (props: SystemListActionProps) => {
       component: "a",
       href: AppRoute.app_sub_app(app_id),
       allow: "*",
-      disable: false,
+      disable: hideSecondary,
     },
     {
       leftSection: <LiaFeatherAltSolid size={18} />,
@@ -71,7 +72,7 @@ const SystemListAction = (props: SystemListActionProps) => {
       component: "a",
       href: AppRoute.app_feature(app_id),
       allow: "*",
-      disable: false,
+      disable: hideSecondary,
     },
     {
       leftSection: <FaRegPauseCircle size={18} />,

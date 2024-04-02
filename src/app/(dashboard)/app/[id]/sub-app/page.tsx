@@ -100,6 +100,7 @@ const column: DataTableColumn[] = [
           isDeleted={deletedAt !== null}
           status={status}
           app_id={id}
+          hideSecondary
         />
       );
     },
@@ -140,7 +141,7 @@ const SubSystem = (props: { params: { id: string } }) => {
       fetching={loading}
       headerContent={
         <SystemFilter
-          create_app_label="Create Sub App"
+          create_app_label="Add Sub App"
           create_app_url={AppRoute.create_sub_app(id)}
         />
       }

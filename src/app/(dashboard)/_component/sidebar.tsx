@@ -50,11 +50,11 @@ const Sidebar = (props: SidebarProps) => {
             />
             {desktopOpened ? (
               <Center w="100%" h={48}>
-                <Image src="/vercel.svg" h="100%" w="100%" alt="AtiNova" />
+                <Image src="/logo.png" h="100%" w="100%" alt="AtiNova" />
               </Center>
             ) : (
-              <Center w="100%" h={48}>
-                <Image src="/vercel.svg" h="100%" alt="AtiNova" />
+              <Center w="100%" h={64}>
+                <Image src="/logo.png" h="100%" alt="AtiNova" />
               </Center>
             )}
           </Flex>
