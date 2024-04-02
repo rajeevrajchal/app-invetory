@@ -29,6 +29,8 @@ const Login = () => {
         <Stack>
           <Button
             onClick={() => google.mutate()}
+            disabled={google.isPending}
+            loading={google.isPending}
             leftSection={<FcGoogle size={22} />}
             variant="outline"
           >
