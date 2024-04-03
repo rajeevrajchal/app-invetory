@@ -10,6 +10,11 @@ const FeatureService = {
       method: METHOD.POST,
       data: payload,
     }),
+  enable_feature: (feature_id: string) =>
+    useAxios({
+      url: `${api}/enable/${feature_id}`,
+      method: METHOD.PATCH,
+    }),
 };
 
 export default FeatureService;

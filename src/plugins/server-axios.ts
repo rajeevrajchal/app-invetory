@@ -13,13 +13,18 @@ interface AxiosAPI {
   responseType?: ResponseType;
   isDownload?: boolean;
   onUploadProgress?: () => void;
+  next?: { tags: string[] };
+}
+
+interface CustomAxiosRequestConfig extends AxiosRequestConfig {
+  next?: { tags: string[] };
 }
 
 const serverAxios = async <T>(props: AxiosAPI): Promise<T> => {
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
   const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/`;
-  const config: AxiosRequestConfig = {
+  const config: CustomAxiosRequestConfig = {
     method: props.method || "GET",
     url: `${baseUrl}${props.url}`,
     headers: {
@@ -33,6 +38,7 @@ const serverAxios = async <T>(props: AxiosAPI): Promise<T> => {
     responseType: props.responseType || ("json" as any),
     onUploadProgress: props.onUploadProgress,
     timeout: 0,
+    next: props.next,
   };
   if (
     props.contentType === "multipart/form-data" ||

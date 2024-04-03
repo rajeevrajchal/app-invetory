@@ -8,6 +8,7 @@ export async function getSystemFeatures(system_id: string) {
   const response: FEATURE[] = await serverAxios({
     url: `feature/${system_id}`,
     method: METHOD.GET,
+    next: { tags: ["features"] },
   });
   return response;
 }
