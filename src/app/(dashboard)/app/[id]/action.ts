@@ -1,22 +1,14 @@
 "use server";
 
-import axios from "axios";
-import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
+import { $FIX_ME } from "@/types/fix-me";
 
-export async function getSystemData(id: string) {
-  try {
-    const cookieStore = cookies();
-    const token = cookieStore.get("token")?.value;
+import serverAxios from "@/plugins/server-axios";
+import { METHOD } from "@/types/axios-get";
 
-    const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/system/${id}`;
-    const response = await axios.get(baseUrl, {
-      headers: {
-        Authorization: token !== null ? `Bearer ${token}` : "",
-      },
-    });
-    return response.data;
-  } catch (error) {
-    notFound();
-  }
+export async function getSystemData(system_id: string) {
+  const response: $FIX_ME = await serverAxios({
+    url: `system/${system_id}`,
+    method: METHOD.GET,
+  });
+  return response;
 }

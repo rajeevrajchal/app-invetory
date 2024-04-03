@@ -1,69 +1,9 @@
-"use client";
+import FeatureTable from "./_components/feature-table";
+import { getSystemFeatures } from "./action";
 
-import CustomBadge from "@/components/custom-badge";
-import Table from "@/components/table";
-import { Flex, Stack } from "@mantine/core";
-import { DataTableColumn } from "mantine-datatable";
-
-const features: DataTableColumn[] = [
-  {
-    accessor: "name",
-    title: "Features",
-    sortable: true,
-    textAlign: "left",
-    ellipsis: true,
-  },
-  {
-    accessor: "key",
-    title: "Key",
-    sortable: true,
-    textAlign: "left",
-    ellipsis: true,
-  },
-  {
-    accessor: "description",
-    title: "Description",
-    sortable: true,
-    textAlign: "left",
-    ellipsis: true,
-  },
-  {
-    accessor: "status",
-    title: "Status",
-    sortable: true,
-    textAlign: "left",
-    ellipsis: true,
-    render: (record: any) => {
-      const { status } = record;
-      const statusColor = "$555555";
-
-      return (
-        <Flex align="center" gap="md">
-          <CustomBadge tooltip={status} color={statusColor}>
-            {status}
-          </CustomBadge>
-        </Flex>
-      );
-    },
-  },
-  {
-    accessor: "id",
-    title: "",
-    textAlign: "left",
-    width: 50,
-    ellipsis: true,
-    render: () => {
-      return <p>The action</p>;
-    },
-  },
-];
-
-const SystemFeatures = () => {
-  return (
-    <Stack>
-      <Table columns={features} data={[]} />
-    </Stack>
-  );
+const SystemFeatures = async (props: { params: { id: string } }) => {
+  const features = await getSystemFeatures(props.params.id);
+  return <FeatureTable features={features} system_id={props.params.id} />;
 };
 
 export default SystemFeatures;

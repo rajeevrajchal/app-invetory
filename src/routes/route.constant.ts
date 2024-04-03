@@ -12,6 +12,7 @@ const AppRoute = {
   app_sub_app: (app_id: string) => `/app/${app_id}/sub-app`,
   app_feature: (app_id: string) => `/app/${app_id}/feature`,
   create_sub_app: (app_id: string) => `/app/${app_id}/sub-app/create`,
+  create_app_feature: (app_id: string) => `/app/${app_id}/feature/create`,
 
   // customers
   customer: "/customer",
