@@ -1,3 +1,5 @@
+import { SYSTEM } from "./system.model";
+
 export interface FEATURE {
   id: string;
   name: string;
@@ -8,4 +10,5 @@ export interface FEATURE {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
+  system: Pick<SYSTEM, "id" | "name">;
 }

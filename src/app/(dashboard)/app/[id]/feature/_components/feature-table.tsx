@@ -1,12 +1,14 @@
 "use client";
 
 import Table from "@/components/table";
+import { FEATURE } from "@/model/feature.model";
 import AppRoute from "@/routes/route.constant";
 import { $FIX_ME } from "@/types/fix-me";
 import { Loader, Switch } from "@mantine/core";
 import { DataTableColumn } from "mantine-datatable";
 import useFeatureMutate from "../_hooks/useFeatueMutate";
 import FeatureFilter from "./feature-filter";
+import FeatureTableAction from "./feature-table-action";
 
 interface FeatureTableProps {
   features: $FIX_ME;
@@ -60,38 +62,22 @@ const column: DataTableColumn[] = [
     textAlign: "left",
     ellipsis: true,
   },
-  // {
-  //   accessor: "status",
-  //   title: "Status",
-  //   sortable: true,
-  //   textAlign: "left",
-  //   ellipsis: true,
-  //   render: (record: any) => {
-  //     const { status } = record;
-  //     const statusColor = "$555555";
-
-  //     return (
-  //       <Flex align="center" gap="md">
-  //         <CustomBadge tooltip={status} color={statusColor}>
-  //           {status}
-  //         </CustomBadge>
-  //       </Flex>
-  //     );
-  //   },
-  // },
   {
     accessor: "id",
     title: "",
     textAlign: "left",
     ellipsis: true,
-    render: () => {
-      return <p>The action</p>;
+    render: (record: any) => {
+      const { id, system } = record as FEATURE;
+
+      return <FeatureTableAction feature_id={id} app_id={system.id} />;
     },
   },
 ];
 
 const FeatureTable = (props: FeatureTableProps) => {
   const { features, system_id } = props;
+  console.log("teh featues", features);
 
   return (
     <Table
