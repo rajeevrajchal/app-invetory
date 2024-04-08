@@ -35,7 +35,7 @@ const Sidebar = (props: SidebarProps) => {
 
   return (
     <AppShell.Navbar py="xs">
-      <Stack gap="xs">
+      <Stack gap="xs" h="100%">
         <Box px="md">
           <Flex
             direction={{ base: "column", sm: "row" }}
@@ -59,7 +59,7 @@ const Sidebar = (props: SidebarProps) => {
             )}
           </Flex>
         </Box>
-        <Stack px="md" mt="md">
+        <Stack px="md" mt="md" className="h-full">
           {getSideMenuViaRole.map((item: SidebarItem, index: number) => (
             <div key={`${item.key}-${index}`}>
               <NavLink

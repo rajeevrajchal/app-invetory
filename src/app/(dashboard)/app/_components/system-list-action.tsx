@@ -72,7 +72,7 @@ const SystemListAction = (props: SystemListActionProps) => {
       component: "a",
       href: AppRoute.app_feature(app_id),
       allow: "*",
-      disable: hideSecondary,
+      disable: false,
     },
     {
       leftSection: <FaRegPauseCircle size={18} />,
