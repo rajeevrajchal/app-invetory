@@ -15,6 +15,8 @@ import {
   SYSTEM_STATUS_NAME,
 } from "@/enum/system-status.enum";
 import { SYSTEM } from "@/model/system.model";
+import { Anchor, Badge, Flex, Text } from "@mantine/core";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import SystemFilter from "./_components/system-filter";
 import SystemListAction from "./_components/system-list-action";
 import useSystem from "./_hooks/use-systems";
@@ -34,15 +36,45 @@ const column: DataTableColumn[] = [
     textAlign: "left",
     ellipsis: true,
     render: (record: any) => {
-      const { status } = record;
+      const { status, deletedAt } = record;
       const statusColor = SYSTEM_STATUS_COLOR[status];
+
       return (
-        <CustomBadge
-          tooltip={String(SYSTEM_STATUS_NAME?.[status] || "")}
-          color={statusColor}
-        >
-          {SYSTEM_STATUS_NAME[status]}
-        </CustomBadge>
+        <Flex align="center" gap="md">
+          <CustomBadge
+            tooltip={String(SYSTEM_STATUS_NAME?.[status] || "")}
+            color={statusColor}
+          >
+            {SYSTEM_STATUS_NAME[status]}
+          </CustomBadge>
+          {deletedAt && (
+            <Badge color="red" py="sm">
+              <Flex align="center" gap="xs">
+                <Text size="xs" className="capitalize">
+                  Deleted @ {formatDate(deletedAt)}
+                </Text>
+              </Flex>
+            </Badge>
+          )}
+        </Flex>
+      );
+    },
+  },
+  {
+    accessor: "domain",
+    title: "Domain",
+    sortable: true,
+    textAlign: "left",
+    ellipsis: true,
+    render: (record: any) => {
+      const { domain } = record;
+      return (
+        <Anchor href={domain} target="_blank" underline="never">
+          <Flex gap="md" align="center">
+            <Text>{domain} </Text>
+            <FaExternalLinkAlt />
+          </Flex>
+        </Anchor>
       );
     },
   },
@@ -61,8 +93,14 @@ const column: DataTableColumn[] = [
     width: 50,
     ellipsis: true,
     render: (record: any) => {
-      const { id } = record as SYSTEM;
-      return <SystemListAction system_id={id} />;
+      const { id, status, deletedAt } = record as SYSTEM;
+      return (
+        <SystemListAction
+          isDeleted={deletedAt !== null}
+          status={status}
+          app_id={id}
+        />
+      );
     },
   },
 ];

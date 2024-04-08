@@ -1,32 +1,23 @@
 import Menu from "@/components/menu";
-import AppRoute from "@/routes/route.constant";
 import { ActionIcon, Text } from "@mantine/core";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaEye } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 
-interface SystemListActionProps {
-  system_id: string;
+interface FeatureTableActionProps {
+  feature_id: string;
+  app_id: string;
 }
 
-const SystemListAction = (props: SystemListActionProps) => {
-  const { system_id } = props;
+const FeatureTableAction = (props: FeatureTableActionProps) => {
+  const { feature_id, app_id } = props;
 
   const getMenuViaRole: any = [
     {
       leftSection: <MdEdit size={18} />,
       children: <Text className="capitalize">Edit</Text>,
-      component: "a",
-      href: AppRoute.system_edit(system_id),
+      component: "button",
       allow: "*",
-      disable: false,
-    },
-    {
-      leftSection: <FaEye size={18} />,
-      children: <Text className="capitalize">Detail</Text>,
-      component: "a",
-      href: AppRoute.system_detail(system_id),
-      allow: "*",
+      onClick: () => console.log("hello edit"),
       disable: false,
     },
   ].filter((item) => {
@@ -54,4 +45,4 @@ const SystemListAction = (props: SystemListActionProps) => {
   );
 };
 
-export default SystemListAction;
+export default FeatureTableAction;

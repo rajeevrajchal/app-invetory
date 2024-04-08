@@ -1,10 +1,15 @@
 import SystemService from "@/api/services/system.service";
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
 
 const useSystem = () => {
+  const param = useParams();
+  const system_id = param.id || "";
+
   const system_query = useQuery({
-    queryKey: ["system.all"],
-    queryFn: () => SystemService.all(),
+    queryKey: ["system.detail", system_id],
+    queryFn: () => SystemService.detail(system_id as string),
+    enabled: !!system_id,
   });
 
   return {
@@ -12,7 +17,7 @@ const useSystem = () => {
       system_query.isLoading ||
       system_query.isFetching ||
       system_query.isRefetching,
-    systems: system_query.data,
+    system: system_query.data,
   };
 };
 

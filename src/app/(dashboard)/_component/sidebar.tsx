@@ -2,11 +2,11 @@ import { SidebarItem, sidebarMenu } from "@/constant/sidebar";
 import useAuth from "@/hook/store/use-auth";
 import {
   AppShell,
+  Avatar,
   Box,
   Burger,
   Center,
   Flex,
-  Image,
   NavLink,
   Stack,
 } from "@mantine/core";
@@ -35,7 +35,7 @@ const Sidebar = (props: SidebarProps) => {
 
   return (
     <AppShell.Navbar py="xs">
-      <Stack gap="xs">
+      <Stack gap="xs" h="100%">
         <Box px="md">
           <Flex
             direction={{ base: "column", sm: "row" }}
@@ -49,17 +49,17 @@ const Sidebar = (props: SidebarProps) => {
               size="sm"
             />
             {desktopOpened ? (
-              <Center w="100%" h={48}>
-                <Image src="/vercel.svg" h="100%" w="100%" alt="AtiNova" />
+              <Center w="100%">
+                <Avatar src="/logo.png" alt="Ati-nova" size="xl" />
               </Center>
             ) : (
-              <Center w="100%" h={48}>
-                <Image src="/vercel.svg" h="100%" alt="AtiNova" />
+              <Center w="100%">
+                <Avatar src="/logo.png" alt="Ati-nova" size="xl" />
               </Center>
             )}
           </Flex>
         </Box>
-        <Stack px="md" mt="md">
+        <Stack px="md" mt="md" className="h-full">
           {getSideMenuViaRole.map((item: SidebarItem, index: number) => (
             <div key={`${item.key}-${index}`}>
               <NavLink
@@ -75,6 +75,7 @@ const Sidebar = (props: SidebarProps) => {
                 style={{
                   borderRadius: "4px",
                 }}
+                tt="capitalize"
                 h="lg"
                 py="md"
                 href={`${item.href}`}

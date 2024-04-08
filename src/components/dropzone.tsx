@@ -1,14 +1,14 @@
 import {
+  ActionIcon,
+  Box,
+  Flex,
   Group,
+  Image,
   SimpleGrid,
   Stack,
   Text,
-  Image,
-  Box,
-  Flex,
-  ActionIcon,
 } from "@mantine/core";
-import { Dropzone as MDropzone, DropzoneProps } from "@mantine/dropzone";
+import { DropzoneProps, Dropzone as MDropzone } from "@mantine/dropzone";
 import { FaRegFileAlt, FaTrash } from "react-icons/fa";
 
 interface DropzonePropsInterface extends Partial<DropzoneProps> {
@@ -59,6 +59,7 @@ const Dropzone = (props: DropzonePropsInterface) => {
                     src={imageUrl}
                     radius="md"
                     onLoad={() => URL.revokeObjectURL(imageUrl)}
+                    alt="image"
                   />
                   <ActionIcon
                     pos="absolute"

@@ -5,16 +5,22 @@ const AppRoute = {
   reset_password: "/reset-password",
   profile: "/my-account",
 
-  system: "/system",
-  create_system: "/system/create",
-  system_detail: (system_id: string) => `/system/${system_id}`,
-  system_edit: (system_id: string) => `/system/${system_id}/edit`,
+  app: "/app",
+  create_app: "/app/create",
+  app_detail: (app_id: string) => `/app/${app_id}`,
+  app_edit: (app_id: string) => `/app/${app_id}/edit`,
+  app_sub_app: (app_id: string) => `/app/${app_id}/sub-app`,
+  app_feature: (app_id: string) => `/app/${app_id}/feature`,
+  create_sub_app: (app_id: string) => `/app/${app_id}/sub-app/create`,
+  create_app_feature: (app_id: string) => `/app/${app_id}/feature/create`,
+
+  // customers
+  customer: "/customer",
 
   users: "/users",
   contracts: "/contracts",
   vendors: "/vendors",
   schedule: "/schedule",
-  clients: "/clients",
 };
 
 export default AppRoute;
