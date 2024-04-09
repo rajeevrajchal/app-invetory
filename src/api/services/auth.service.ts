@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import useAxios, { METHOD } from "@/plugins/call.axios";
+import useAxios from "@/plugins/call.axios";
+import { METHOD } from "@/types/axios-get";
 import {
   FORGET_PASSWORD,
   LOGIN_TYPE,

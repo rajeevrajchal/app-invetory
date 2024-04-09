@@ -1,4 +1,5 @@
-import useAxios, { METHOD } from "@/plugins/call.axios";
+import useAxios from "@/plugins/call.axios";
+import { METHOD } from "@/types/axios-get";
 
 const api = "system";
 

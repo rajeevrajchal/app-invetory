@@ -25,12 +25,7 @@ interface ErrorDataType {
   errorMessage: string;
 }
 
-export enum METHOD {
-  GET = "GET",
-  POST = "POST",
-  PATCH = "PATCH",
-  DELETE = "DELETE",
-}
+
 
 const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/`;
 
