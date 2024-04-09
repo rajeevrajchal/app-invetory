@@ -28,17 +28,17 @@ export const sidebarMenu: SidebarItem[] = [
     allow: "*",
   },
   {
-    icon: <TiVendorMicrosoft size={22} />,
-    label: "Vendors",
-    key: "vendors",
-    href: AppRoute.vendors,
-    allow: "*",
-  },
-  {
     icon: <FaUsers size={22} />,
     label: "customer",
     key: "customer",
     href: AppRoute.customer,
+    allow: "*",
+  },
+  {
+    icon: <TiVendorMicrosoft size={22} />,
+    label: "Vendors",
+    key: "vendors",
+    href: AppRoute.vendors,
     allow: "*",
   },
 ];

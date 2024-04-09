@@ -50,7 +50,6 @@ const useAuthData = () => {
   const google = useMutation({
     mutationFn: () => AuthService.google(),
     onSuccess: async (data: any) => {
-      console.log("data", data);
       router.replace(data?.redirect_url);
     },
     onError: (error) => {

@@ -66,7 +66,8 @@ const serverAxios = async <T>(props: AxiosAPI): Promise<T> => {
   try {
     const response = await axios(config);
     return props.isDownload ? (response as any) : (response?.data as T);
-  } catch (error) {
+  } catch (error: any) {
+    // console.log("the error", error?.response?.data?.message);
     notFound();
   }
 };
