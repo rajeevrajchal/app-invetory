@@ -21,6 +21,8 @@ const AppRoute = {
   contracts: "/contracts",
   vendors: "/vendors",
   schedule: "/schedule",
+  work_logs: "/work-logs",
+  team: "/teams",
 };
 
 export default AppRoute;

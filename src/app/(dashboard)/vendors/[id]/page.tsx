@@ -4,6 +4,7 @@ const Vendor = async (props: { params: { id: string } }) => {
   const {
     params: { id },
   } = props;
+
   const vendors = await getVendor(id);
 
   return (
