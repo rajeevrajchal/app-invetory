@@ -49,7 +49,6 @@ const Dropzone = (props: DropzonePropsInterface) => {
       {showPreview ? (
         <SimpleGrid cols={{ base: 1, sm: 2 }}>
           {files.map((file: any, index: number) => {
-            console.log("file", file);
             if (file.type.includes("image")) {
               const imageUrl = URL.createObjectURL(file);
               return (

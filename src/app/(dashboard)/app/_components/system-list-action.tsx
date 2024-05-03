@@ -72,7 +72,15 @@ const SystemListAction = (props: SystemListActionProps) => {
       component: "a",
       href: AppRoute.app_feature(app_id),
       allow: "*",
-      disable: false,
+      disable: hideSecondary,
+    },
+    {
+      leftSection: <LiaFeatherAltSolid size={18} />,
+      children: <Text className="capitalize">Connect Features</Text>,
+      component: "a",
+      href: AppRoute.app_feature(app_id),
+      allow: "*",
+      disable: !hideSecondary,
     },
     {
       leftSection: <FaRegPauseCircle size={18} />,

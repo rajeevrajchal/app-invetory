@@ -77,7 +77,6 @@ const column: DataTableColumn[] = [
 
 const FeatureTable = (props: FeatureTableProps) => {
   const { features, system_id } = props;
-  console.log("teh featues", features);
 
   return (
     <Table

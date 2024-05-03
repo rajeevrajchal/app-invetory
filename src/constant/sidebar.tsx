@@ -1,7 +1,8 @@
 import AppRoute from "@/routes/route.constant";
 import { ReactElement } from "react";
 import { AiOutlinePieChart } from "react-icons/ai";
-import { FaAppStoreIos, FaUsers } from "react-icons/fa";
+import { FaAppStoreIos, FaNetworkWired, FaUsers } from "react-icons/fa";
+import { GoWorkflow } from "react-icons/go";
 import { TiVendorMicrosoft } from "react-icons/ti";
 
 export interface SidebarItem {
@@ -28,10 +29,18 @@ export const sidebarMenu: SidebarItem[] = [
     allow: "*",
   },
   {
-    icon: <TiVendorMicrosoft size={22} />,
-    label: "Vendors",
-    key: "vendors",
-    href: AppRoute.vendors,
+    icon: <GoWorkflow size={22} />,
+    label: "Work Logs",
+    key: "work-logs",
+    href: AppRoute.work_logs,
+    allow: "*",
+  },
+
+  {
+    icon: <FaNetworkWired size={22} />,
+    label: "team",
+    key: "team",
+    href: AppRoute.team,
     allow: "*",
   },
   {
@@ -39,6 +48,13 @@ export const sidebarMenu: SidebarItem[] = [
     label: "customer",
     key: "customer",
     href: AppRoute.customer,
+    allow: "*",
+  },
+  {
+    icon: <TiVendorMicrosoft size={22} />,
+    label: "Vendors",
+    key: "vendors",
+    href: AppRoute.vendors,
     allow: "*",
   },
 ];
