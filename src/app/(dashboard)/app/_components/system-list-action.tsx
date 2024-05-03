@@ -60,7 +60,7 @@ const SystemListAction = (props: SystemListActionProps) => {
     },
     {
       leftSection: <GrMultiple size={18} />,
-      children: <Text className="capitalize">Sub Apps</Text>,
+      children: <Text className="capitalize">Instances</Text>,
       component: "a",
       href: AppRoute.app_sub_app(app_id),
       allow: "*",

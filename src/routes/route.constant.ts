@@ -9,9 +9,9 @@ const AppRoute = {
   create_app: "/app/create",
   app_detail: (app_id: string) => `/app/${app_id}`,
   app_edit: (app_id: string) => `/app/${app_id}/edit`,
-  app_sub_app: (app_id: string) => `/app/${app_id}/sub-app`,
+  app_sub_app: (app_id: string) => `/app/${app_id}/instances`,
   app_feature: (app_id: string) => `/app/${app_id}/feature`,
-  create_sub_app: (app_id: string) => `/app/${app_id}/sub-app/create`,
+  create_sub_app: (app_id: string) => `/app/${app_id}/instances/create`,
   create_app_feature: (app_id: string) => `/app/${app_id}/feature/create`,
 
   // customers
