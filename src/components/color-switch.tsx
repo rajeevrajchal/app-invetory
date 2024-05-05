@@ -1,6 +1,6 @@
 import { ActionIcon, useMantineColorScheme } from "@mantine/core";
-import { TiAdjustBrightness } from "react-icons/ti";
-import { WiMoonAltWaningCrescent5 } from "react-icons/wi";
+import { FaRegMoon } from "react-icons/fa";
+import { IoIosSunny } from "react-icons/io";
 
 const ColorSwitch = () => {
   const { setColorScheme, colorScheme } = useMantineColorScheme();
@@ -13,12 +13,12 @@ const ColorSwitch = () => {
     <ActionIcon
       variant="transparent"
       aria-label="Color Swatch"
-      onClick={handleColorSwitch}
+      onClick={() => handleColorSwitch()}
     >
       {colorScheme === "light" ? (
-        <WiMoonAltWaningCrescent5 size={24} color="black" />
+        <FaRegMoon size={18} color="black" />
       ) : (
-        <TiAdjustBrightness size={24} color="white" />
+        <IoIosSunny size={20} color="white" />
       )}
     </ActionIcon>
   );

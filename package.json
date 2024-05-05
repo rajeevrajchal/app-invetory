@@ -9,7 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mantine/core": "^7.6.1",
+    "@mantine/core": "^7.9.0",
+    "@mantine/dates": "^7.9.0",
     "@mantine/dropzone": "^7.6.1",
     "@mantine/hooks": "^7.6.1",
     "@tanstack/react-query": "^5.25.0",

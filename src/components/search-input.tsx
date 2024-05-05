@@ -1,3 +1,4 @@
+"use client";
 import { CloseButton, TextInput } from "@mantine/core";
 import { CiSearch } from "react-icons/ci";
 

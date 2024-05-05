@@ -12,7 +12,6 @@ import {
   Group,
   Loader,
   Menu as MMenu,
-  Paper,
   Text,
 } from "@mantine/core";
 import { BsLayoutSidebarInset } from "react-icons/bs";
@@ -74,8 +73,12 @@ const AppBar = (props: AppBarProps) => {
                 <Menu
                   position="bottom-end"
                   trigger={
-                    <Button size="xs" leftSection={<FaPlus />}>
-                      Start
+                    <Button
+                      variant="transparent"
+                      size="xs"
+                      leftSection={<FaPlus />}
+                    >
+                      Quick Menu
                     </Button>
                   }
                   menu={[
@@ -83,8 +86,13 @@ const AppBar = (props: AppBarProps) => {
                       leftSection: <PiProjectorScreenChartLight size={20} />,
                       children: <Text className="capitalize">Add System</Text>,
                     },
+                    {
+                      leftSection: <PiProjectorScreenChartLight size={20} />,
+                      children: <Text className="capitalize">Add Logs</Text>,
+                    },
                   ]}
                 />
+                <ColorSwitch />
 
                 {/* profile button */}
                 <MMenu shadow="md" width={200} withArrow arrowSize={12}>
@@ -97,14 +105,12 @@ const AppBar = (props: AppBarProps) => {
                   </MMenu.Target>
                   <MMenu.Dropdown>
                     <MMenu.Label>
-                      <Paper>
-                        <Text size="sm" className="capitalize">
-                          {loginUser.name}
-                        </Text>
-                        <Text size="sm" className="capitalize">
-                          {loginUser.role}
-                        </Text>
-                      </Paper>
+                      <Text size="sm" className="capitalize">
+                        {loginUser.name}
+                      </Text>
+                      <Text size="sm" className="capitalize">
+                        {loginUser.role}
+                      </Text>
                     </MMenu.Label>
                     <Divider />
                     <MMenu.Item component="a" href={AppRoute.profile} mt="xs">
@@ -128,7 +134,6 @@ const AppBar = (props: AppBarProps) => {
               </Group>
             )
           )}
-          <ColorSwitch />
         </Flex>
       </Flex>
     </AppShell.Header>
