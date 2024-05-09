@@ -1,3 +1,4 @@
+import { $FIX_ME } from "@/types/fix-me";
 import { OPTION } from "@/types/option.type";
 import { FloatingIndicator, UnstyledButton } from "@mantine/core";
 import { findIndex } from "lodash";
@@ -7,7 +8,7 @@ import classes from "./floating-button.module.css";
 interface FloatingButtonProps {
   options: OPTION[];
   active: string;
-  setActive: (active: string) => void;
+  setActive: (active: "my" | "team") => void;
 }
 
 const FloatingButton = (props: FloatingButtonProps) => {
@@ -28,7 +29,7 @@ const FloatingButton = (props: FloatingButtonProps) => {
       key={`option-${item.value}-${index}`}
       className={classes.control}
       ref={setControlRef(index)}
-      onClick={() => setActive(item.value)}
+      onClick={() => setActive(item.value as $FIX_ME)}
       mod={{ active: active === item.value }}
     >
       <span className={classes.controlLabel}>{item.label}</span>
