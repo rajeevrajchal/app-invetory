@@ -15,8 +15,7 @@ import {
   Text,
 } from "@mantine/core";
 import { BsLayoutSidebarInset } from "react-icons/bs";
-import { FaPlus } from "react-icons/fa";
-import { PiProjectorScreenChartLight } from "react-icons/pi";
+import { FaAppStoreIos, FaPlus } from "react-icons/fa";
 import ColorSwitch from "../../../components/color-switch";
 import Menu from "../../../components/menu";
 
@@ -83,12 +82,10 @@ const AppBar = (props: AppBarProps) => {
                   }
                   menu={[
                     {
-                      leftSection: <PiProjectorScreenChartLight size={20} />,
-                      children: <Text className="capitalize">Add System</Text>,
-                    },
-                    {
-                      leftSection: <PiProjectorScreenChartLight size={20} />,
-                      children: <Text className="capitalize">Add Logs</Text>,
+                      leftSection: <FaAppStoreIos size={20} />,
+                      children: (
+                        <Text className="capitalize">Add Instance</Text>
+                      ),
                     },
                   ]}
                 />
