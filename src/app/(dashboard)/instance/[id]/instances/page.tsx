@@ -142,7 +142,7 @@ const SubSystem = (props: { params: { id: string } }) => {
       headerContent={
         <SystemFilter
           create_app_label="Add Sub App"
-          create_app_url={AppRoute.create_sub_app(id)}
+          create_app_url={AppRoute.create_sub_instance(id)}
         />
       }
       columns={column}

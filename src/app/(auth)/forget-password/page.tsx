@@ -40,7 +40,7 @@ const ForgetPassword = () => {
           loading={false}
           onClick={() => forgetPassword.handleSubmit()}
         >
-          Login
+          Continue
         </Button>
       </Stack>
     </Fieldset>

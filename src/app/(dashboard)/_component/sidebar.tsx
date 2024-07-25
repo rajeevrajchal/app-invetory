@@ -59,7 +59,7 @@ const Sidebar = (props: SidebarProps) => {
             )}
           </Flex>
         </Box>
-        <Stack px="md" mt="md" className="h-full">
+        <Stack px="md" className="h-full">
           {getSideMenuViaRole.map((item: SidebarItem, index: number) => (
             <div key={`${item.key}-${index}`}>
               <NavLink

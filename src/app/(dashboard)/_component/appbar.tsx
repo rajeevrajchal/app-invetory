@@ -12,12 +12,10 @@ import {
   Group,
   Loader,
   Menu as MMenu,
-  Paper,
   Text,
 } from "@mantine/core";
 import { BsLayoutSidebarInset } from "react-icons/bs";
-import { FaPlus } from "react-icons/fa";
-import { PiProjectorScreenChartLight } from "react-icons/pi";
+import { FaAppStoreIos, FaPlus } from "react-icons/fa";
 import ColorSwitch from "../../../components/color-switch";
 import Menu from "../../../components/menu";
 
@@ -74,17 +72,24 @@ const AppBar = (props: AppBarProps) => {
                 <Menu
                   position="bottom-end"
                   trigger={
-                    <Button size="xs" leftSection={<FaPlus />}>
-                      Start
+                    <Button
+                      variant="transparent"
+                      size="xs"
+                      leftSection={<FaPlus />}
+                    >
+                      Quick Menu
                     </Button>
                   }
                   menu={[
                     {
-                      leftSection: <PiProjectorScreenChartLight size={20} />,
-                      children: <Text className="capitalize">Add System</Text>,
+                      leftSection: <FaAppStoreIos size={20} />,
+                      children: (
+                        <Text className="capitalize">Add Instance</Text>
+                      ),
                     },
                   ]}
                 />
+                <ColorSwitch />
 
                 {/* profile button */}
                 <MMenu shadow="md" width={200} withArrow arrowSize={12}>
@@ -97,14 +102,12 @@ const AppBar = (props: AppBarProps) => {
                   </MMenu.Target>
                   <MMenu.Dropdown>
                     <MMenu.Label>
-                      <Paper>
-                        <Text size="sm" className="capitalize">
-                          {loginUser.name}
-                        </Text>
-                        <Text size="sm" className="capitalize">
-                          {loginUser.role}
-                        </Text>
-                      </Paper>
+                      <Text size="sm" className="capitalize">
+                        {loginUser.name}
+                      </Text>
+                      <Text size="sm" className="capitalize">
+                        {loginUser.role}
+                      </Text>
                     </MMenu.Label>
                     <Divider />
                     <MMenu.Item component="a" href={AppRoute.profile} mt="xs">
@@ -128,7 +131,6 @@ const AppBar = (props: AppBarProps) => {
               </Group>
             )
           )}
-          <ColorSwitch />
         </Flex>
       </Flex>
     </AppShell.Header>

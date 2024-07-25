@@ -8,7 +8,9 @@ import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import "@mantine/dropzone/styles.css";
+
 import "mantine-datatable/styles.layer.css";
 import "react-toastify/dist/ReactToastify.css";
 

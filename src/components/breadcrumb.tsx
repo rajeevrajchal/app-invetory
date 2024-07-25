@@ -1,4 +1,5 @@
 import useBreadcrumb from "@/hook/store/use-breadcrumb";
+import { removeDash } from "@/utils/functions/remove-dash";
 import { Anchor, Breadcrumbs } from "@mantine/core";
 import { BiHomeAlt } from "react-icons/bi";
 
@@ -17,7 +18,7 @@ const Breadcrumb = () => {
                 textTransform: "capitalize",
               }}
             >
-              {item.name}
+              {removeDash(item.name)}
             </span>
           )}
         </Anchor>

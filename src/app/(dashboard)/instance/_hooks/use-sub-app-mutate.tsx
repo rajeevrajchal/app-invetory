@@ -15,7 +15,7 @@ const useSubAppMutate = (id: string) => {
         omit(payload, ["parent_system_id"])
       ),
     onSuccess: () => {
-      router.push(AppRoute.app_sub_app(id));
+      router.push(AppRoute.instance_sub_instance(id));
     },
   });
 

@@ -1,5 +1,9 @@
-const Vendor = () => {
-  return <div>Vendor</div>;
+import VendorList from "./_components/list";
+import { getVendors } from "./action";
+
+const Vendors = async () => {
+  const vendors = await getVendors();
+  return <VendorList vendors={vendors || []} />;
 };
 
-export default Vendor;
+export default Vendors;

@@ -2,6 +2,8 @@ import AppRoute from "@/routes/route.constant";
 import { ReactElement } from "react";
 import { AiOutlinePieChart } from "react-icons/ai";
 import { FaAppStoreIos, FaUsers } from "react-icons/fa";
+import { GoWorkflow } from "react-icons/go";
+import { IoDocumentsOutline } from "react-icons/io5";
 import { TiVendorMicrosoft } from "react-icons/ti";
 
 export interface SidebarItem {
@@ -22,9 +24,23 @@ export const sidebarMenu: SidebarItem[] = [
   },
   {
     icon: <FaAppStoreIos size={22} />,
-    label: "Apps",
-    key: "apps",
-    href: AppRoute.app,
+    label: "Instances",
+    key: "instance",
+    href: AppRoute.instance,
+    allow: "*",
+  },
+  {
+    icon: <IoDocumentsOutline size={22} />,
+    label: "Documents",
+    key: "document",
+    href: AppRoute.document,
+    allow: "*",
+  },
+  {
+    icon: <GoWorkflow size={22} />,
+    label: "Work Logs",
+    key: "work-logs",
+    href: AppRoute.work_logs,
     allow: "*",
   },
   {
