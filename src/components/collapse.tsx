@@ -1,8 +1,8 @@
 import {
   ActionIcon,
   Flex,
-  Stack,
   Collapse as MCollapse,
+  Stack,
   Text,
 } from "@mantine/core";
 import { ReactElement, useState } from "react";
@@ -10,7 +10,7 @@ import { FaCaretDown, FaCaretRight } from "react-icons/fa6";
 
 interface CollapseProps {
   content: ReactElement;
-  title: string | ReactElement;
+  title?: string | ReactElement;
   isOpen?: boolean;
 }
 

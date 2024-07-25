@@ -1,50 +1,45 @@
 "use client";
+
 import FloatingButton from "@/components/floating-button";
-import SearchInput from "@/components/search-input";
-import { Flex, SimpleGrid, Stack, TagsInput } from "@mantine/core";
-import { DatePickerInput } from "@mantine/dates";
-import { useState } from "react";
+import { Flex, Stack } from "@mantine/core";
+import { notFound, useSearchParams } from "next/navigation";
+import LogFilter from "./components/log-filter";
+import MyWorkLogs from "./components/my-work-log";
+import TeamWorkLog from "./components/team-work-log";
+
+const getActiveTab = (active: string | null) => {
+  switch (active) {
+    case "my":
+      return <MyWorkLogs />;
+    case "team":
+      return <TeamWorkLog />;
+    default:
+      return notFound();
+  }
+};
+
 const WorkLogs = () => {
-  const [value, setValue] = useState<[Date | null, Date | null]>([null, null]);
-  const [active, setActive] = useState<string>("summary");
+  const searchParams = useSearchParams();
+  const activeTab = searchParams.get("tab") || "my";
 
   return (
     <Stack>
-      <Flex gap="md" justify="space-between" align="center">
+      <Flex justify="space-between" gap="lg">
         <FloatingButton
-          setActive={setActive}
-          active={active}
           options={[
             {
-              label: "Summary",
-              value: "summary",
+              label: "My",
+              value: "my",
             },
             {
-              label: "Detailed",
-              value: "detailed",
+              label: "Team",
+              value: "team",
             },
           ]}
         />
-        <SimpleGrid cols={3}>
-          <SearchInput
-            query={""}
-            setQuery={(value) => console.log("value", value)}
-          />
-          <TagsInput
-            placeholder="Enter tag"
-            defaultValue={["React"]}
-            clearable
-            data={["React", "Angular", "Vue", "Svelte"]}
-          />
-          <DatePickerInput
-            type="range"
-            miw="20vw"
-            value={value}
-            onChange={setValue}
-            placeholder="Pick date"
-          />
-        </SimpleGrid>
+        <LogFilter />
       </Flex>
+      {getActiveTab(activeTab)}
     </Stack>
   );
 };

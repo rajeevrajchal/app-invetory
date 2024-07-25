@@ -85,7 +85,7 @@ const FeatureTable = (props: FeatureTableProps) => {
       headerContent={
         <FeatureFilter
           create_app_label="Add Features"
-          create_app_url={AppRoute.create_app_feature(system_id)}
+          create_app_url={AppRoute.create_instance_feature(system_id)}
         />
       }
     />
