@@ -13,7 +13,7 @@ const useFeatureMutate = (id: string) => {
   const addFeatureInSystem = useMutation({
     mutationFn: (payload: any) => FeatureService.create(payload),
     onSuccess: () => {
-      router.push(AppRoute.app_feature(id));
+      router.push(AppRoute.instance_feature(id));
     },
   });
 

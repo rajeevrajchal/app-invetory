@@ -22,7 +22,7 @@ const SystemFilter = (props: SystemFilterProps) => {
         leftSection={<IoMdAdd size={14} />}
         variant="light"
         component="a"
-        href={create_app_url || AppRoute.create_app}
+        href={create_app_url || AppRoute.create_instance}
       >
         {create_app_label || "Create App"}
       </Button>

@@ -10,7 +10,7 @@ const useSystemMutate = () => {
   const createSystem = useMutation({
     mutationFn: (payload) => SystemService.create(payload),
     onSuccess: () => {
-      router.push(AppRoute.app);
+      router.push(AppRoute.instance);
     },
   });
 
@@ -18,7 +18,7 @@ const useSystemMutate = () => {
     mutationFn: (payload: { system: any; id: string }) =>
       SystemService.update(payload.system, payload.id),
     onSuccess: () => {
-      router.push(AppRoute.app);
+      router.push(AppRoute.instance);
     },
   });
 

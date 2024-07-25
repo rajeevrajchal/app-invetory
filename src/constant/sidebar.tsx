@@ -3,6 +3,7 @@ import { ReactElement } from "react";
 import { AiOutlinePieChart } from "react-icons/ai";
 import { FaAppStoreIos } from "react-icons/fa";
 import { GoWorkflow } from "react-icons/go";
+import { IoDocumentsOutline } from "react-icons/io5";
 
 export interface SidebarItem {
   icon: ReactElement;
@@ -22,9 +23,16 @@ export const sidebarMenu: SidebarItem[] = [
   },
   {
     icon: <FaAppStoreIos size={22} />,
-    label: "Apps",
-    key: "apps",
-    href: AppRoute.app,
+    label: "Instances",
+    key: "instance",
+    href: AppRoute.instance,
+    allow: "*",
+  },
+  {
+    icon: <IoDocumentsOutline size={22} />,
+    label: "Documents",
+    key: "document",
+    href: AppRoute.document,
     allow: "*",
   },
   {
