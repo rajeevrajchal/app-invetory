@@ -95,7 +95,12 @@ const AppBar = (props: AppBarProps) => {
                 <MMenu shadow="md" width={200} withArrow arrowSize={12}>
                   <MMenu.Target>
                     <Center>
-                      <Avatar color="cyan" alt={loginUser.name} size="sm">
+                      <Avatar
+                        color="cyan"
+                        alt={loginUser.name}
+                        size="sm"
+                        className="cursor-pointer"
+                      >
                         {getInitialsName(loginUser.name)}
                       </Avatar>
                     </Center>
